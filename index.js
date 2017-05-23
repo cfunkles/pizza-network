@@ -3,7 +3,8 @@ var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var mongodb = require('mongodb');
 var ObjectID = require("mongodb").ObjectId;
-var secrets = require("./secrets.js");
+//bring file back to work
+//var secrets = require("./secrets.js");
 
 var db;
 
