@@ -117,11 +117,17 @@ app.post('/api/newPlace', function(req, res){
 	});
 });
 
-//List all pizza places
+// Top Ten List
+app.get('/api/topTen', function(req, res){
+	
+});
 
-//Filter pizza places
+// List all pizza places
 
-//Chats
+// Filter pizza places
+
+
+// Chats
 
 
 
