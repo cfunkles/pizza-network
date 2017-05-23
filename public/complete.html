@@ -54,6 +54,23 @@
             <div id="pizza-output"></div>
         </div>
     </section>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajax({
+                method: 'GET',
+                url: '/api/getPizzaPlaces', 
+                success: function(response) {
+                    $('#pizza-output').empty();
+                    for (var i = 0; i < response.length; i++) {
+                        $('#pizza-output').append(response[i]);
+                    }
+                },
+                error: function(err) {
+                    $('pizza-output').text('500 internal server error!');
+                }
+            });
+        });
+    </script>
     
 </body>
 </html>
