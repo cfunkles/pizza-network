@@ -56,7 +56,6 @@
 				Available Styles: 
                 <div class="deliveryStatus">
                     <input type="radio" id="delYes"> Has Delivery<br>
-                    <input type="radio" id="del3rd"> Uses Third Party<br>
                     <input type="radio" id="delNo"> Pick-Up Or Dine-In Only<br>
                 </div>
                 Kid Friendly:
@@ -78,9 +77,21 @@
         // })
 
         //profile creation
-        // $('#newPizzaSubmit').click(function() {
-        //     $.post()
-        // })
+        $('#newPizzaSubmit').click(function() {
+            $.post('/api/newPlace'), {
+                name: $('#newPizzaName').val(),
+                address: $('#newPizzaAdd').val(),
+                city: $('#newPizzaCity').val(),
+                state: $('#newPizzaState').val(),
+                phone: $('#newPizzaTel').val(),
+                url: $('#newPizzaSite').val(),
+                type: 
+                delivery: 
+                kidFriendly: 
+                upVotes: 0,
+                downVotes: 0
+            }
+        })
     </script>
 </body>
 </html>
