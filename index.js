@@ -83,17 +83,7 @@ app.post('/api/login', function(req, res){
 	});
 });
 
-app.get('/api/getPizzaPlaces', function(req, res) {
-	db.collection('places').find({}).toArray(function(err, data) {
-		if(err){
-			console.log(err);
-			res.status(500);
-			res.send('error');
-			return;
-		}
-		res.send(data);
-	});
-});
+
 //Create new pizza place
 
 app.post('/api/newPlace', function(req, res){
@@ -137,6 +127,17 @@ app.get('/api/topTen', function(req, res){
 });
 
 // List all pizza places
+app.get('/api/getPizzaPlaces', function(req, res) {
+	db.collection('places').find({}).toArray(function(err, data) {
+		if(err){
+			console.log(err);
+			res.status(500);
+			res.send('error');
+			return;
+		}
+		res.send(data);
+	});
+});
 
 // Filter pizza places
 
