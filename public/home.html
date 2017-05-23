@@ -55,11 +55,11 @@
                 </div>
 				Delivery Option: 
                 <div class="deliveryStatus">
-                    <input type="checkbox" id="delivery" name="delivery"> Has Delivery<br>
+                    <input type="radio" id="delivery" name="delivery"> Has Delivery<br>
                 </div>
                 Kid Friendly:
                 <div>
-                    <input type="checkbox" id="kids" name="kids"> Kid-Friendly<br>
+                    <input type="radio" id="kids" name="kids"> Kid-Friendly<br>
                 </div>
                 <button class="btn btn-info" id="newPizzaSubmit">Submit Pizzeria</button>
 			</div>
@@ -82,7 +82,7 @@
                 phone: $('#newPizzaTel').val(),
                 url: $('#newPizzaSite').val(),
                 type: getCheckboxValues(),
-                delivery: $('input[name=del]:checked').val(),
+                delivery: $('input[name=delivery]:checked').val(),
                 kidFriendly: $('input[name=kids]:checked').val(),
                 upVotes: 0,
                 downVotes: 0
