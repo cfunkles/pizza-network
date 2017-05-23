@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var mongodb = require('mongodb');
 var ObjectID = require("mongodb").ObjectId;
-var secrets = require("./secrets.js");
+//var secrets = require("./secrets.js");
 
 var db;
 
@@ -103,8 +103,8 @@ app.post('/api/newPlace', function(req, res){
 		type: req.body.type,
 		delivery: req.body.delivery,
 		kidFriendly: req.body.kidFriendly,
-		pizzaLikes: parseInt(req.body.pizzaLikes),
-		pizzaDislikes: parseInt(req.body.pizzaDislikes),
+		upVotes: parseInt(req.body.pizzaLikes),
+		downVotes: parseInt(req.body.pizzaDislikes),
 		submitter: req.session.user._id
 	}, function(err, data){
 		if(err){
