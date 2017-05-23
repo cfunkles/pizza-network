@@ -48,14 +48,14 @@
                 <!-- fix the radio buttons so that they unclick -->
 				Available Styles: 
                 <div class="pizzaStyles">
-                    <input type="radio" id="york"> New York<br>
-                    <input type="radio" id="deep"> Deep Dish<br>
-                    <input type="radio" id="brick"> Brick Oven<br>
-                    <input type="radio" id="authentic"> Authentic<br>
+                    <input type="radio" id="york" name="pizzaType"> New York<br>
+                    <input type="radio" id="deep" name="pizzaType"> Deep Dish<br>
+                    <input type="radio" id="brick" name="pizzaType"> Brick Oven<br>
+                    <input type="radio" id="authentic" name="pizzaType"> Authentic<br>
                 </div>
 				Available Styles: 
                 <div class="deliveryStatus">
-                    <input type="radio" id="delYes"> Has Delivery<br>
+                    <input type="radio" id="delYes" name="del"> Has Delivery<br>
                     <input type="radio" id="delNo"> Pick-Up Or Dine-In Only<br>
                 </div>
                 Kid Friendly:
@@ -85,13 +85,21 @@
                 state: $('#newPizzaState').val(),
                 phone: $('#newPizzaTel').val(),
                 url: $('#newPizzaSite').val(),
-                type: 
-                delivery: 
-                kidFriendly: $('input[name=kids]:checked').val()
+                type: getCheckboxValues(),
+                delivery: $('input[name=del]:checked').val(),
+                kidFriendly: $('input[name=kids]:checked').val(),
                 upVotes: 0,
                 downVotes: 0
             }
-        })
+        });
+
+function getCheckboxValues(){
+    var data = { 'pizzaType' : []};
+    $(":checked").each(function() {
+  data['pizzaType'].push($(this).val());
+});
+    return data.pizzaType;
+}
     </script>
 </body>
 </html>
