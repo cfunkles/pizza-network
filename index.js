@@ -104,7 +104,7 @@ app.post('/api/newPlace', function(req, res){
 		delivery: req.body.delivery,
 		kidFriendly: req.body.kidFriendly,
 		upVotes: parseInt(req.body.upVotes),
-		downVotes: parseInt(req.body.downVote),
+		downVotes: parseInt(req.body.downVotes),
 		submitter: req.session.user._id
 	}, function(err, data){
 		if(err){
