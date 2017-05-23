@@ -74,7 +74,7 @@
 
         //profile creation
         $('#newPizzaSubmit').click(function() {
-            $.post('/api/newPlace'), {
+            $.post('/api/newPlace', {
                 name: $('#newPizzaName').val(),
                 address: $('#newPizzaAdd').val(),
                 city: $('#newPizzaCity').val(),
@@ -97,7 +97,7 @@
                 //the following two may not be correct
                 $('input[type=checkbox]').removeAttr('checked');
                 $('input[type=radio]').removeAttr('checked');
-            }
+            });
         });
 
 function getCheckboxValues(){
