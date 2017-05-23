@@ -13,6 +13,44 @@
     <title>*Login/Registration*</title>
 </head>
 <body>
-    
+    <div class="container login-form">
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+				<div id="login-error"></div>
+				<input type="text" id="username">
+				<input type="text" id="password">
+				<button class="btn btn-info" id="login">Login</button>
+				<button class="btn btn-warning" id="register">Register</button>
+			</div>
+		</div>
+	</div>
+
+    <script>
+        $('#login').click(function() {
+            $.post('/api/login', {
+                username: $('#username').val(),
+                password: $('#password').val()
+            }, function(res) {
+                if (res === "error") {
+                    $('#login-error').text('Error: Username or password incorrect.');
+                } else {
+                    window.location.href = "/home.html"
+                } 
+            });
+        });
+
+         $('#register').click(function() {
+            $.post('/api/register', {
+                username: $('#username').val(),
+                password: $('#password').val()
+            }, function(res) {
+                if (res === "error") {
+                    $('#login-error').text('Error: Could not register user.');
+                } else {
+                    $('#login-error').text('Registered! Try logging in...');
+                } 
+            });
+        });
+    </script>
 </body>
 </html>
