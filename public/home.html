@@ -61,8 +61,8 @@
                 Kid Friendly:
                 <div>
                     <label class="radio-inline">
-                        <input type="radio" id="kids"> Kid-Friendly<br>
-                        <input type="radio" id="noKids"> Not So Kid-Friendly<br>
+                        <input type="radio" id="kids" name="kids"> Kid-Friendly<br>
+                        <input type="radio" id="noKids" name="noKids"> Not So Kid-Friendly<br>
                     </label>
                 </div>
                 <button class="btn btn-info" id="newPizzaSubmit">Submit Pizzeria</button>
@@ -87,7 +87,7 @@
                 url: $('#newPizzaSite').val(),
                 type: 
                 delivery: 
-                kidFriendly: 
+                kidFriendly: $('input[name=kids]:checked').val()
                 upVotes: 0,
                 downVotes: 0
             }
