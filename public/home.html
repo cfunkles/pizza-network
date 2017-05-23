@@ -91,6 +91,7 @@
                 upVotes: 0,
                 downVotes: 0
             }, function () {
+                console.log("did it go in?");
                 $('#newPizzaName').val('');
                 $('#newPizzaAdd').val('');
                 $('#newPizzaCity').val('');
@@ -106,8 +107,8 @@
 function getCheckboxValues(){
     var data = { 'pizzaType' : []};
     $(":checked").each(function() {
-  data['pizzaType'].push($(this).val());
-});
+        data['pizzaType'].push($(this).val());
+    });
     return data.pizzaType;
 }
     </script>
