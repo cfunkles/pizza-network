@@ -94,7 +94,6 @@ app.post('/api/newPlace', function(req, res){
 		return;
 	}
 	// If so, add new pizza place
-	console.log(req.body);
 	db.collection('places').insertOne({
 		name: req.body.name,
 		address: req.body.address,
@@ -135,6 +134,7 @@ app.get('/api/getPizzaPlaces', function(req, res) {
 			res.send('error');
 			return;
 		}
+		console.log(data);
 		res.send(data);
 	});
 });

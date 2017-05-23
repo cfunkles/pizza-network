@@ -25,50 +25,51 @@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <!--To Do: change to buttons, customize the sytle more-->
-                <li class="active"><a href="home.html">Home</a></li>
-                <li><a href="complete.html">Complete Pizzeria List</a> </li>
+                <li><a href="home.html">Home</a></li>
+                <li class="active"><a href="complete.html">Complete Pizzeria List</a> </li>
                 <li><a href="chats.html">The Slicial Network</a></li>
             </ul>
         </div>
     </nav>
     <!--Sidebar for filtering pizza lists-->
-    <aside>
-        <div class="container-fluid btn-group-vertical btn-group-lg">
-            <h2><span class="label label-primary">Find your Pizza spot!</span></h2>
-            <button class="btn btn-info" id="woodfired">WoodFired</button>
-            <button class="btn btn-info" id="new-york">New York</button>
-            <button class="btn btn-info" id="chicago">Chicago</button>
-            <button class="btn btn-info" id="authentic">Authentic</button>
-            <button class="btn btn-info" id="kid-friendly">Kid friendly</button>
-            <button class="btn btn-info" id="kids-not">Kids not recommended</button>
-            <button class="btn btn-info" id="severs-alc0hol">Severs Alcohol</button>
-            <button class="btn btn-info" id="delivery">Delivery</button>
-            <button class="btn btn-info" id="pick-up">Pick Up</button>
-            <button class="btn btn-info" id="dine-in">Dine in</button>
-            <button class="btn btn-info" id="dive-join">Dive Joint</button>
-        </div>
-    </aside>
-    <!--The lists page-->
-    <section>
-        <div class="container-fluid">
-            <div id="pizza-output"></div>
-        </div>
-    </section>
+    <div class="row container-fluid">
+        <aside>
+            <div class="btn-group-vertical btn-group-lg col-md-2.5">
+                <h2><span class="label label-primary">Find your Pizza spot!</span></h2>
+                <button class="btn btn-info" id="woodfired">WoodFired</button>
+                <button class="btn btn-info" id="new-york">New York</button>
+                <button class="btn btn-info" id="chicago">Chicago</button>
+                <button class="btn btn-info" id="authentic">Authentic</button>
+                <button class="btn btn-info" id="kid-friendly">Kid friendly</button>
+                <button class="btn btn-info" id="kids-not">Kids not recommended</button>
+                <button class="btn btn-info" id="severs-alcohol">Severs Alcohol</button>
+                <button class="btn btn-info" id="delivery">Delivery</button>
+                <button class="btn btn-info" id="pick-up">Pick Up</button>
+                <button class="btn btn-info" id="dine-in">Dine in</button>
+                <button class="btn btn-info" id="dive-join">Dive Joint</button>
+            </div>
+        </aside>
+        <!--The lists page-->
+        <section>
+            <div class="col-md-8 col-md-offset-3 well">
+                <div id="pizza-output"></div>
+            </div>
+        </section>
+    </div>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $.ajax({
-                method: 'GET',
-                url: '/api/getPizzaPlaces', 
-                success: function(response) {
-                    $('#pizza-output').empty();
-                    for (var i = 0; i < response.length; i++) {
-                        $('#pizza-output').append(response[i]);
-                    }
-                },
-                error: function(err) {
-                    $('pizza-output').text('500 internal server error!');
+        $.ajax({
+            method: 'GET',
+            url: '/api/getPizzaPlaces', 
+            success: function(response) {
+                $('#pizza-output').empty();
+                console.log(response);
+                for (var i = 0; i < response.length; i++) {
+                    //$('#pizza-output').text(response[i]);
                 }
-            });
+            },
+            error: function(err) {
+                $('#pizza-output').text('500 internal server error!');
+            }
         });
     </script>
     
