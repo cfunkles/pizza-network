@@ -13,7 +13,7 @@
     <title>*Complete Pizzeria List*</title>
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a href="#" class="navbar-brand">
@@ -21,7 +21,7 @@
                     <img src="http://www.hey.fr/fun/emoji/android/en/icon/android/227-emoji_android_slice_of_pizza.png" alt="firebrick-logo">
                 </a>
                 <!--Create better title style the shit out of this!-->
-                <h4>Pizza-Network</h4>
+                <h4 id='site-name'>Pizza-Network</h4>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <!--To Do: change to buttons, customize the sytle more-->
@@ -33,8 +33,8 @@
     </nav>
     <!--Sidebar for filtering pizza lists-->
     <div class="row container-fluid">
-        <aside>
-            <div class="btn-group-vertical btn-group-lg col-md-2.5">
+        <aside class="col-sm-3">
+            <div class="btn-group-vertical btn-group-lg">
                 <h2><span class="label label-primary">Find your Pizza spot!</span></h2>
                 <button class="btn btn-info" id="woodfired">WoodFired</button>
                 <button class="btn btn-info" id="new-york">New York</button>
@@ -50,11 +50,11 @@
             </div>
         </aside>
         <!--The lists page-->
-        <section>
-            <div class="col-md-8 col-md-offset-3 well">
+        
+            <div class="col-md-8 well">
                 <div id="pizza-output"></div>
             </div>
-        </section>
+       
     </div>
     <script type="text/javascript">
         $.ajax({

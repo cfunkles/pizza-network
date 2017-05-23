@@ -3,6 +3,19 @@
 	height: 1.5em
 }
 
+div.row {
+	margin-top: 60px
+}
+
+body{
+	background-color: firebrick;
+}
+
+#site-name {
+	color: white;
+}
+
 aside {
-	margin-top: 50px
+
+
 }
