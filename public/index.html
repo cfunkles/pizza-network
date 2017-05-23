@@ -33,7 +33,7 @@
             }, function(res) {
                 console.log(res);
                 if (res === "error") {
-                    $('#login-error').text('Error: Username or password incorrect.');
+                    $('#login-error').text('Error: Username or password incorrect or you need to register first');
                 } else {
                     console.log(res);
                     $('#username').val('');

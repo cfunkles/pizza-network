@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var mongodb = require('mongodb');
 var ObjectID = require("mongodb").ObjectId;
-//bring file back to work
+
 //var secrets = require("./secrets.js");
 
 var db;
@@ -104,8 +104,8 @@ app.post('/api/newPlace', function(req, res){
 		type: req.body.type,
 		delivery: req.body.delivery,
 		kidFriendly: req.body.kidFriendly,
-		pizzaLikes: parseInt(req.body.pizzaLikes),
-		pizzaDislikes: parseInt(req.body.pizzaDislikes),
+		upVotes: parseInt(req.body.upVotes),
+		downVotes: parseInt(req.body.downVotes),
 		submitter: req.session.user._id
 	}, function(err, data){
 		if(err){
@@ -120,7 +120,9 @@ app.post('/api/newPlace', function(req, res){
 
 // Top Ten List
 app.get('/api/topTen', function(req, res){
-	
+	db.collection('places').find({
+
+	});
 });
 
 // List all pizza places

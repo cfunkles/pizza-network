@@ -33,7 +33,7 @@
     </nav>
 
     <div class="container" id="topten">
-
+        
     </div>
 
     <div class="container">
@@ -45,86 +45,71 @@
                 Address: <input type="text" id="newPizzaAdd" class="form-control">
                 City: <input type="text" id="newPizzaCity" class="form-control">
                 State: <input type="text" id="newPizzaState" class="form-control">
+                <!-- fix the radio buttons so that they unselect -->
 				Available Styles: 
                 <div class="pizzaStyles">
-                    <input type="radio" id="york"> New York<br>
-                    <input type="radio" id="deep"> Deep Dish<br>
-                    <input type="radio" id="brick"> Brick Oven<br>
-                    <input type="radio" id="authentic"> Authentic<br>
+                    <input type="checkbox" id="york"> New York<br>
+                    <input type="checkbox" id="deep"> Deep Dish<br>
+                    <input type="checkbox" id="brick"> Brick Oven<br>
+                    <input type="checkbox" id="authentic"> Authentic<br>
                 </div>
-				Available Styles: 
+				Available Styles (Please select one): 
                 <div class="deliveryStatus">
-                    <input type="radio" id="delYes"> Has Delivery<br>
-                    <input type="radio" id="del3rd"> Uses Third Party<br>
+                    <input type="radio" id="delYes" name="del"> Has Delivery<br>
                     <input type="radio" id="delNo"> Pick-Up Or Dine-In Only<br>
                 </div>
-                Kid Friendly:
+                Kid Friendly (Please select one):
                 <div>
                     <label class="radio-inline">
-                        <input type="radio" id="kids"> Kid-Friendly<br>
-                        <input type="radio" id="noKids"> Not So Kid-Friendly<br>
+                        <input type="radio" id="kids" name="kids"> Kid-Friendly<br>
+                        <input type="radio" id="noKids" name="noKids"> Not So Kid-Friendly<br>
                     </label>
                 </div>
                 <button class="btn btn-info" id="newPizzaSubmit">Submit Pizzeria</button>
 			</div>
 		</div>
 	</div>
-    <div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    </div>
+
+    <script>
+        //top ten stuff
+        // $(document).ready(function() {
+        //     $.get()
+        // })
+
+        //profile creation
+        $('#newPizzaSubmit').click(function() {
+            $.post('/api/newPlace'), {
+                name: $('#newPizzaName').val(),
+                address: $('#newPizzaAdd').val(),
+                city: $('#newPizzaCity').val(),
+                state: $('#newPizzaState').val(),
+                phone: $('#newPizzaTel').val(),
+                url: $('#newPizzaSite').val(),
+                type: getCheckboxValues(),
+                delivery: $('input[name=del]:checked').val(),
+                kidFriendly: $('input[name=kids]:checked').val(),
+                upVotes: 0,
+                downVotes: 0
+            }, function () {
+                $('#newPizzaName').val('');
+                $('#newPizzaAdd').val('');
+                $('#newPizzaCity').val('');
+                $('#newPizzaState').val('');
+                $('#newPizzaTel').val('');
+                $('#newPizzaSite').val('');
+                //the following two may not be correct
+                $('input[type=checkbox]').removeAttr('checked');
+                $('input[type=radio]').removeAttr('checked');
+            }
+        });
+
+function getCheckboxValues(){
+    var data = { 'pizzaType' : []};
+    $(":checked").each(function() {
+  data['pizzaType'].push($(this).val());
+});
+    return data.pizzaType;
+}
+    </script>
 </body>
 </html>
