@@ -31,9 +31,9 @@ app.use(expressSession({
 	saveUninitialized: true
 }));
 
-//Register a new user
+// Register a new user
 app.post('/api/register', function(req, res){
-	//check to see if username already exists
+	// Check to see if username already exists
 	db.collection('users').find({
 		username: req.body.username
 	}, function(err, data){
@@ -43,6 +43,7 @@ app.post('/api/register', function(req, res){
 		if(data){
 			return console.log("Sorry, this username already exists! Try a new one.");
 		}
+		// If username does not exist, add user to db
 		db.collection('users').insertOne({
 			username: req.body.username,
 			password: req.body.password //todo: hash this
@@ -50,15 +51,33 @@ app.post('/api/register', function(req, res){
 			if(err){
 				console.log(err);
 				res.status(500);
-				res.send('Error inserting new user');
+				res.send('Error adding new user');
 				return;
 			}
 			res.send(data);
+
 		});
 	});
 });
 
-//Login
+// Post to login
+app.post('/api/login', function(req, res){
+	db.collection('users').findOne({
+		username: req.body.username,
+		password: req.body.password
+	}, function(err, data){
+		if(data === null){
+			res.send('error');
+			return;
+		}
+		req.session.user = {
+			_id: data._id,
+			username: data.username
+		};
+		res.send('success');
+	});
+});
+
 
 //Create new pizza place
 
