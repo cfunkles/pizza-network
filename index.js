@@ -103,13 +103,8 @@ app.post('/api/newPlace', function(req, res){
 		type: req.body.type,
 		delivery: req.body.delivery,
 		kidFriendly: req.body.kidFriendly,
-<<<<<<< HEAD
-		upVotes: parseInt(req.body.pizzaLikes),
-		downVotes: parseInt(req.body.pizzaDislikes),
-=======
 		upVotes: parseInt(req.body.upVotes),
 		downVotes: parseInt(req.body.downVote),
->>>>>>> origin/master
 		submitter: req.session.user._id
 	}, function(err, data){
 		if(err){
