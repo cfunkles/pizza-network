@@ -3,8 +3,7 @@ var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var mongodb = require('mongodb');
 var ObjectID = require("mongodb").ObjectId;
-// var secrets = require("./secrets.js");
-
+//var secrets = require("./secrets.js");
 
 var db;
 
@@ -104,8 +103,13 @@ app.post('/api/newPlace', function(req, res){
 		type: req.body.type,
 		delivery: req.body.delivery,
 		kidFriendly: req.body.kidFriendly,
+<<<<<<< HEAD
+		upVotes: parseInt(req.body.pizzaLikes),
+		downVotes: parseInt(req.body.pizzaDislikes),
+=======
 		upVotes: parseInt(req.body.upVotes),
 		downVotes: parseInt(req.body.downVote),
+>>>>>>> origin/master
 		submitter: req.session.user._id
 	}, function(err, data){
 		if(err){

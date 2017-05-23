@@ -45,20 +45,27 @@
                 Address: <input type="text" id="newPizzaAdd" class="form-control">
                 City: <input type="text" id="newPizzaCity" class="form-control">
                 State: <input type="text" id="newPizzaState" class="form-control">
-                <!-- fix the radio buttons so that they unclick -->
+                <!-- fix the radio buttons so that they unselect -->
 				Available Styles: 
                 <div class="pizzaStyles">
+<<<<<<< HEAD
                     <input type="radio" id="york" name="pizzaType"> New York<br>
                     <input type="radio" id="deep" name="pizzaType"> Deep Dish<br>
                     <input type="radio" id="brick" name="pizzaType"> Brick Oven<br>
                     <input type="radio" id="authentic" name="pizzaType"> Authentic<br>
+=======
+                    <input type="checkbox" id="york"> New York<br>
+                    <input type="checkbox" id="deep"> Deep Dish<br>
+                    <input type="checkbox" id="brick"> Brick Oven<br>
+                    <input type="checkbox" id="authentic"> Authentic<br>
+>>>>>>> origin/master
                 </div>
-				Available Styles: 
+				Available Styles (Please select one): 
                 <div class="deliveryStatus">
                     <input type="radio" id="delYes" name="del"> Has Delivery<br>
                     <input type="radio" id="delNo"> Pick-Up Or Dine-In Only<br>
                 </div>
-                Kid Friendly:
+                Kid Friendly (Please select one):
                 <div>
                     <label class="radio-inline">
                         <input type="radio" id="kids" name="kids"> Kid-Friendly<br>
@@ -90,6 +97,16 @@
                 kidFriendly: $('input[name=kids]:checked').val(),
                 upVotes: 0,
                 downVotes: 0
+            }, function () {
+                $('#newPizzaName').val('');
+                $('#newPizzaAdd').val('');
+                $('#newPizzaCity').val('');
+                $('#newPizzaState').val('');
+                $('#newPizzaTel').val('');
+                $('#newPizzaSite').val('');
+                //the following two may not be correct
+                $('input[type=checkbox]').removeAttr('checked');
+                $('input[type=radio]').removeAttr('checked');
             }
         });
 
