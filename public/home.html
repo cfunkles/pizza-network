@@ -46,21 +46,29 @@
                 City: <input type="text" id="newPizzaCity" class="form-control">
                 State: <input type="text" id="newPizzaState" class="form-control">
                 <!-- fix the radio buttons so that they unselect -->
-				Available Styles: 
+				<h4>Pizza Styles:</h4>
                 <div class="pizzaStyles">
-                    <input type="checkbox" id="york"> New York<br>
-                    <input type="checkbox" id="deep"> Deep Dish<br>
-                    <input type="checkbox" id="brick"> Brick Oven<br>
-                    <input type="checkbox" id="authentic"> Authentic<br>
+                New York:
+                <input type="radio" name="newYork" value="yes" checked> Yes
+                <input type="radio" name="newYork" value="no"> No<br>
+                Deep Dish:
+                <input type="radio" name="deepDish" value="yes" checked> Yes
+                <input type="radio" name="deepDish" value="no"> No<br>
+                Brick Oven:
+                <input type="radio" name="brickOven" value="yes" checked> Yes
+                <input type="radio" name="brickOven" value="no"> No<br>
+                Authentic:
+                <input type="radio" name="authentic" value="yes" checked> Yes
+                <input type="radio" name="authentic" value="no"> No<br>
                 </div>
-				Delivery Option: 
-                <div class="deliveryStatus">
-                    <input type="radio" id="delivery" name="delivery"> Has Delivery<br>
-                </div>
-                Kid Friendly:
-                <div>
-                    <input type="radio" id="kids" name="kids"> Kid-Friendly<br>
-                </div>
+                <div class="additionalOptions">
+				<h4>Delivery?:</h4>
+                    <input type="radio" name="delivery" value="yes" checked> Yes
+                    <input type="radio" name="delivery" value="no"> No<br>
+                <h4>Kid Friendly?:</h4>
+                    <input type="radio" name="kids" value="yes" checked> Yes
+                    <input type="radio" name="kids" value="no"> No<br>
+                </div><br>
                 <button class="btn btn-info" id="newPizzaSubmit">Submit Pizzeria</button>
 			</div>
 		</div>
@@ -81,37 +89,28 @@
                 state: $('#newPizzaState').val(),
                 phone: $('#newPizzaTel').val(),
                 url: $('#newPizzaSite').val(),
-                type: getCheckboxValues(),
+                newYork: $('input[name=newYork]:checked').val(),
+                deepDish: $('input[name=deepDish]:checked').val(),
+                brickOven: $('input[name=brickOven]:checked').val(),
+                authentic: $('input[name=authentic]:checked').val(),
                 delivery: $('input[name=delivery]:checked').val(),
-                kidFriendly: $('input[name=kids]:checked').val(),
+                kids: $('input[name=kids]:checked').val(),
                 upVotes: 0,
                 downVotes: 0
             }, function () {
-                console.log("did it go in?");
                 $('#newPizzaName').val('');
                 $('#newPizzaAdd').val('');
                 $('#newPizzaCity').val('');
                 $('#newPizzaState').val('');
                 $('#newPizzaTel').val('');
                 $('#newPizzaSite').val('');
-                //the following two may not be correct
+                //the following two may not be correct - casey to change
                 $('input[type=checkbox]').removeAttr('checked');
                 $('input[type=radio]').removeAttr('checked');
             });
         });
 
-function getCheckboxValues(){
-    var data = { 'pizzaType' : [{
-        ny: $('#york').val(),
-        dd: $('#deep').val(),
-        br: $('#brick').val(),
-        au: $('#authentic').val()
-    }]};
-    $(":checked").each(function() {
-        data['pizzaType'].push($(this).val());
-    });
-    return data.pizzaType;
-}
+
     </script>
 </body>
 </html>
