@@ -31,10 +31,14 @@
                 username: $('#username').val(),
                 password: $('#password').val()
             }, function(res) {
+                console.log(res);
                 if (res === "error") {
                     $('#login-error').text('Error: Username or password incorrect.');
                 } else {
-                    window.location.href = "/home.html"
+                    console.log(res);
+                    $('#username').val('');
+                    $("#password").val('');
+                    window.location.href = "home.html";
                 } 
             });
         });
@@ -44,8 +48,8 @@
                 username: $('#username').val(),
                 password: $('#password').val()
             }, function(res) {
-                if (res === "error") {
-                    $('#login-error').text('Error: Could not register user.');
+                if (res === "exists") {
+                    $('#login-error').text('Error: the username ' + $('#username').val() + ' already exist.');
                 } else {
                     $('#login-error').text('Registered! Try logging in...');
                 } 

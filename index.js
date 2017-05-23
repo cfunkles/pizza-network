@@ -34,14 +34,17 @@ app.use(expressSession({
 // Register a new user
 app.post('/api/register', function(req, res){
 	// Check to see if username already exists
-	db.collection('users').find({
+	db.collection('users').findOne({
 		username: req.body.username
 	}, function(err, data){
+		console.log(data);
 		if(err){
-			return console.log(err);
+			console.log(err);
+			return;
 		}
-		if(data){
-			return console.log("Sorry, this username already exists! Try a new one.");
+		if(data !== null){
+			res.send('exists');
+			return;
 		}
 		// If username does not exist, add user to db
 		db.collection('users').insertOne({
