@@ -51,7 +51,7 @@ app.post('/api/register', function(req, res){
 			if(err){
 				console.log(err);
 				res.status(500);
-				res.send('Error adding new user');
+				res.send('error');
 				return;
 			}
 			res.send(data);
@@ -70,6 +70,7 @@ app.post('/api/login', function(req, res){
 			res.send('error');
 			return;
 		}
+		// Associate this cookie (session) with this user (object)
 		req.session.user = {
 			_id: data._id,
 			username: data.username
@@ -80,6 +81,38 @@ app.post('/api/login', function(req, res){
 
 
 //Create new pizza place
+
+app.post('/api/newPlace', function(req, res){
+	// Check if user is logged in
+	if(!req.session.user){
+		res.status(403);
+		res.send('forbidden');
+		return;
+	}
+	// If so, add new pizza place
+	db.collection('places').insertOne({
+		name: req.body.name,
+		address: req.body.address,
+		city: req.body.city,
+		state: req.body.state,
+		phone: req.body.phone,
+		url: req.body.url,
+		type: req.body.type,
+		delivery: req.body.delivery,
+		kidFriendly: req.body.kidFriendly,
+		pizzaLikes: parseInt(req.body.pizzaLikes),
+		pizzaDislikes: parseInt(req.body.pizzaDislikes),
+		submitter: req.session.user._id
+	}, function(err, data){
+		if(err){
+			console.log(err);
+			res.status(500);
+			res.send('error');
+			return;
+		}
+		res.send(data);
+	});
+});
 
 //List all pizza places
 
