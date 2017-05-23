@@ -31,6 +31,42 @@ app.use(expressSession({
 	saveUninitialized: true
 }));
 
+//Register a new user
+app.post('/api/register', function(req, res){
+	//check to see if username already exists
+	db.collection('users').find({
+		username: req.body.username
+	}, function(err, data){
+		if(err){
+			return console.log(err);
+		}
+		if(data){
+			return console.log("Sorry, this username already exists! Try a new one.");
+		}
+		db.collection('users').insertOne({
+			username: req.body.username,
+			password: req.body.password //todo: hash this
+		}, function(err, data){
+			if(err){
+				console.log(err);
+				res.status(500);
+				res.send('Error inserting new user');
+				return;
+			}
+			res.send(data);
+		});
+	});
+});
+
+//Login
+
+//Create new pizza place
+
+//List all pizza places
+
+//Filter pizza places
+
+//Chats
 
 
 
@@ -43,13 +79,16 @@ app.use(expressSession({
 
 
 
+//Files to be served out of static public folder
 app.use(express.static('public'));
 
+//404 boilerplate
 app.use(function(req, res, next) {
 	res.status(404);
 	res.send("File Not Found! No pizza in sight!");
 });
 
+//500 boilerplate
 app.use(function(err, req, res, next) {
 	console.log(err);
 	res.status(500);
@@ -57,6 +96,8 @@ app.use(function(err, req, res, next) {
 	res.send(err);
 });
 
+
+//start listening after we've connected to the db
 function startListening() {
 	app.listen(8080, function() {
 		console.log("Sever started at http://localhost:8080 Grab a slice!");
