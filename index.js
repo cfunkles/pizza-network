@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var mongodb = require('mongodb');
 var ObjectID = require("mongodb").ObjectId;
+var secrets = require("./secrets.js");
 
 var db;
 
@@ -25,7 +26,7 @@ app.use(bodyParser.urlencoded({
 
 
 app.use(expressSession({
-	secret: 'keyboard cat',
+	secret: secrets.secret,
 	resave: false,
 	saveUninitialized: true
 }));
