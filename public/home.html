@@ -101,7 +101,12 @@
         });
 
 function getCheckboxValues(){
-    var data = { 'pizzaType' : []};
+    var data = { 'pizzaType' : [{
+        ny: $('#york').val(),
+        dd: $('#deep').val(),
+        br: $('#brick').val(),
+        au: $('#authentic').val()
+    }]};
     $(":checked").each(function() {
         data['pizzaType'].push($(this).val());
     });
