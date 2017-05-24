@@ -36,17 +36,13 @@
         <aside class="col-sm-3">
             <div class="btn-group-vertical btn-group-lg">
                 <h2><span class="label label-primary">Find your Pizza spot!</span></h2>
-                <button class="btn btn-info" id="woodfired">WoodFired</button>
-                <button class="btn btn-info" id="new-york">New York</button>
-                <button class="btn btn-info" id="chicago">Chicago</button>
-                <button class="btn btn-info" id="authentic">Authentic</button>
-                <button class="btn btn-info" id="kid-friendly">Kid friendly</button>
-                <button class="btn btn-info" id="kids-not">Kids not recommended</button>
-                <button class="btn btn-info" id="severs-alcohol">Severs Alcohol</button>
-                <button class="btn btn-info" id="delivery">Delivery</button>
-                <button class="btn btn-info" id="pick-up">Pick Up</button>
-                <button class="btn btn-info" id="dine-in">Dine in</button>
-                <button class="btn btn-info" id="dive-join">Dive Joint</button>
+                <button class="btn btn-info" id="popular">Voted Best</button>
+                <button class="btn btn-info" id="new-york">New York Slice</button>
+                <button class="btn btn-info" id="chicago">Chicago Deep Dish</button>
+                <button class="btn btn-info" id="brick-oven">Brick Oven</button>
+                <button class="btn btn-info" id="authentic">Authentic Style</button>
+                <button class="btn btn-info" id="kid-friendly">Kid Friendly</button>
+                <button class="btn btn-info" id="delivery">Delivers</button>
             </div>
         </aside>
         <!--The lists page, template ideas for what jquery builds-->
@@ -181,16 +177,18 @@
             });
         }
 
-        function popularSort(data) {
-            var popular = {};
-            for (var i = 0; i < data.length; i++) {
-                data[i].upVotes - data[i].downVotes;
-            }
-            popular.sort(function(a, b) {
-                return a - b;
-            })
-            return popular;
-        }
+        // function popularSort(data) {
+        //     var popular = {};
+        //     for (var i = 0; i < data.length; i++) {
+        //         data[i].upVotes - data[i].downVotes;
+        //     }
+        //     popular.sort(function(a, b) {
+        //         return a - b;
+        //     })
+        //     return popular;
+        // }
+
+        //attach voting sort to click listener here
 
         function newYorkSort(data) {
             var newYork = [];
@@ -202,6 +200,13 @@
             return newYork;
         }
 
+        $('#new-york').click(function() {
+            $.get('/api/getPizzerias', function(data) {
+                console.log(newYorkSort(data));
+                //put into template and populate
+            })
+        })
+
         function deepDishSort(data) {
             var deepDish = [];
             for (var i = 0; i < data.length; i++) {
@@ -211,6 +216,13 @@
             }
             return deepDish;
         }
+
+        $('#chicago').click(function() {
+            $.get('/api/getPizzerias', function(data) {
+                console.log(deepDishSort(data));
+                //put into template and populate
+            })
+        })
 
         function brickOvenSort(data) {
             var brickOven = [];
@@ -222,6 +234,13 @@
             return brickOven;
         }
 
+        $('#brick-oven').click(function() {
+            $.get('/api/getPizzerias', function(data) {
+                console.log(brickOvenSort(data));
+                //put into template and populate
+            })
+        })
+
         function authenticSort(data) {
             var authentic = [];
             for (var i = 0; i < data.length; i++) {
@@ -231,6 +250,13 @@
             }
             return authentic;
         }
+
+        $('#authentic').click(function() {
+            $.post('/api/getPizzerias', function(data) {
+                console.log(authenticSort(data));
+                //put into template and populate
+            })
+        })
 
         function deliverySort(data) {
             var delivery = [];
@@ -242,6 +268,13 @@
             return delivery;
         }
 
+        $('#delivery').click(function() {
+            $.post('/api/getPizzerias', function(data) {
+                console.log(deliverySort(data));
+                //put into template and populate
+            })
+        })
+
         function kidSort(data) {
             var kid = [];
             for (var i = 0; i < data.length; i++) {
@@ -251,6 +284,13 @@
             }
             return kid;
         }
+
+        $('#kid-friendly').click(function() {
+            $.post('/api/getPizzerias', function(data) {
+                console.log(kidSort(data));
+                //put into template and populate
+            })
+        })
         // //write this to toggle details and select the specific button being clicked
         // $('.details').click(function() {
         //     $('.details').slideDown();
