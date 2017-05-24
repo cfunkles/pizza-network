@@ -191,6 +191,7 @@ app.post('/api/newChats', function(req, res){
 	db.collection('chats').insertOne({
 		timestamp: Date.now(),
 		message: req.body.message,
+		type: req.body.type,
 		submitter: req.session.user._id,
 		username: req.session.user.username //is this secure??
 	});

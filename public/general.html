@@ -65,7 +65,8 @@
 			var newChat = $('#newChat').val();
 			$('#newChat').val("");
 			$.post('/api/newChats', {
-				message: newChat
+				message: newChat,
+				type: "general"
 			}, function(res){
 				if(res === "success"){
 				getChats();
@@ -75,13 +76,22 @@
 
 		function displayChats(chats){
 			$('#chatsOutput').empty();
-			for(var i = 0; i < chats.length; i++){
-				$('#chatsOutput').prepend("<p><strong>" + chats[i].username + ": </strong>" + chats[i].message + "</p>");
+			var generalChats = [];
+			console.log(chats);
+			for(var j = 0; j < chats.length; j++){
+				if(chats[j].type === "general"){
+					generalChats.push(chats[j]);
+				}
+			}
+			console.log(generalChats);
+			for(var i = 0; i < generalChats.length; i++){
+				$('#chatsOutput').prepend("<p><strong>" + generalChats[i].username + ": </strong>" + generalChats[i].message + "</p>");
 			}
 		}
 
 		$('#sendChat').click(sendChat);
 
+		//this part is broken
 		$('#sendChat').keyup(function(event){
 			if(event.keyCode === 13){
 				sendChat();
