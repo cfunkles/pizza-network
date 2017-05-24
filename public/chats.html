@@ -34,25 +34,49 @@
 
     <div class="container">
     <div class="row col-md-4 col-md-offset-1">
-            <div class="well">
+            <div class="well" id="general">
                 <h2>#general</h2>
                 <p>Join this general pizza chat and learn where to find the best pizza!</p>
             </div>
-            <div class="well">
-                <h2>#weird toppings</h2>
-                <p></p>
+            <div class="well" id="weird">
+                <h2>#weirdtoppings</h2>
+                <p>Only interested in non-traditional toppings? This is for you!</p>
             </div>
         </div>
         <div class="row col-md-4 col-md-offset-2">
-            <div class="well">
+            <div class="well" id="kid">
                 <h2>#kidfriendly</h2>
-                <p></p>
+                <p>Find all the places your kids will love!</p>
             </div>
-            <div class="well">
+            <div class="well" id="snobs">
                 <h2>#pizzasnobs</h2>
-                <p></p>
+                <p>Learn where to find the best of the best when it comes to pizza!</p>
             </div>
         </div>
     </div>
+
+    <script>
+        $('#general').click(function(){
+            window.location.href = "general.html";
+        });
+        $('#weird').click(function(){
+            window.location.href = "weird.html";
+        });
+        $('#kid').click(function(){
+            window.location.href = "kid.html";
+        });
+        $('#snobs').click(function(){
+            window.location.href = "snobs.html";
+        });
+
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+

@@ -164,15 +164,15 @@ app.get('/api/topTen', function(req, res){
 
 // List all pizza places
 app.get('/api/getPizzerias', function(req, res) {
-	db.collection('places').find({}).toArray(function(err, data) {
+	db.collection('places').find({}).toArray(function(err, docs) {
 		if(err){
 			console.log(err);
 			res.status(500);
 			res.send('error');
 			return;
 		}
-		console.log(data);
-		res.send(data);
+		console.log(docs);
+		res.send(docs);
 	});
 });
 
@@ -180,6 +180,37 @@ app.get('/api/getPizzerias', function(req, res) {
 
 
 // Chats
+app.post('/api/newChats', function(req, res){
+	// check to see if user is logged in
+	if(!req.session.user){
+		res.status(403);
+		res.send('forbidden');
+		return;
+	}
+
+	db.collection('chats').insertOne({
+		timestamp: Date.now(),
+		message: req.body,
+		submitter: req.session.user._id
+	});
+
+});
+
+app.get('/api/getChats', function(req, res){
+	//check to ee if user is logged in
+	if(!req.session.user){
+		res.status(403);
+		res.send('forbidden');
+		return;
+	}
+
+	db.collection('chats').find({}).toArray(function(err, docs){
+		if(err){
+			return console.log(err);
+		}
+		res.send(data);
+	});
+});
 
 
 
