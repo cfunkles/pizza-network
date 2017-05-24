@@ -130,7 +130,7 @@ app.get('/api/topTen', function(req, res){
 		}
 		var totalVotes = [];
 		for(var i = 0; i < docs.length; i++){
-			var diff = docs[i].upVotes - doc[i].downVotes;
+			var diff = docs[i].upVotes - docs[i].downVotes;
 			totalVotes.push([docs[i]._id, diff]);
 		}
 		totalVotes.sort(function(a, b){
