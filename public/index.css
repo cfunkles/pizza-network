@@ -28,3 +28,14 @@ p img {
 .login-info {
 	background-color: orange;
 }
+
+footer {
+	background-color: black;
+
+	bottom: 0;
+	display: block;
+}
+
+aside {
+	position: fixed;
+}
