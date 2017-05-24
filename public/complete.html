@@ -93,7 +93,7 @@
                 </div>
 
 
-                <div id="pizzeriaTemplate">
+                <div id="pizzeriaTemplate" style="display: none">
                     <div class="col-md-8">
                         <div class="pizzeria">
                             <!-- pizzeria name get hypertext to their profile -->
@@ -150,6 +150,7 @@
                 method: 'GET',
                 url: '/api/getPizzerias', 
                 success: function(response) {
+                    $('#output').empty();
                     for (var i = 0; i < response.length; i++) {
                         var pizzaDiv = $('#pizzeriaTemplate').children().first().clone();
                         pizzaDiv.find('.pizzaName').text(response[i].name);

@@ -123,7 +123,7 @@ app.post('/api/newPlace', function(req, res){
 
 // Up and Down Vote Handlers
 app.post('/api/upvote', function(req, res) {
-	db.collection('places').update({_id: ObjectID(req.body._id)}, {$inc: {upVotes: 1}}, function(err, result) {
+	db.collection('places').updateOne({_id: ObjectID(req.body._id)}, {$inc: {upVotes: 1}}, function(err, result) {
 		if (err) {
 			console.log(err);
 		}
@@ -133,7 +133,7 @@ app.post('/api/upvote', function(req, res) {
 });
 
 app.post('/api/downvote', function(req, res) {
-	db.collection('places').update({_id: ObjectID(req.body._id)}, {$inc: {downVotes: -1}}, function(err, result) {
+	db.collection('places').updateOne({_id: ObjectID(req.body._id)}, {$inc: {downVotes: -1}}, function(err, result) {
 		if (err) {
 			console.log(err);
 		}
