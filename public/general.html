@@ -19,14 +19,14 @@
 				<h1>Welcome to the #general Chat Room!</h1>
 				<p>Join the conversation by adding a message in the text box below</p><br>
 				<input type="text" class="form-control" id="newChat">
-				<button class="btn btn-default" id="sendChats">Send Chats</button>
+				<button class="btn btn-default" id="sendChat">Send Chat</button>
 			</div>
 		</div>
 	</div>
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2" id="displayChats">
+			<div class="col-md-8 col-md-offset-2" id="output">
 				
 			</div>
 		</div>
@@ -34,9 +34,10 @@
 
 	<script>
 	// Post new chat
-	$('#sendChats').click(function(){
+	$('#sendChat').click(function(){
 		sendChat();
 	});
+
 	$('#sendChat').keyup(function(event){
 		if(event.keyCode === 13){
 			sendChat();
@@ -44,19 +45,29 @@
 	});
 
 		function getChats(){
-			$.get('/api/getChats', function(data){
-				$('#displayChats').text(data);
+			$.get('/api/getChats', function(res){
+				var chats = JSON.parse(res);
+				displayChats(chats);
 			});
 		}
 
 		function sendChat(){
-			$.post('/api/newChats',
-			$('#newChat').text(), function(data){
-				$('#newChat').empty();
-				getChats();
+			var newChat = $('#newChat').val();
+			('#newChat').val("");
+			$.post('/api/newChats', {
+				message: newChat
+			}, function(res){
+				displayChats(JSON.parse(res));
 			});
 		}
 
+		function displayChats(chats){
+			$('#output').empty();
+			for(var i = 0; i < chats; i++){
+				$('#output').append("<p>" + chats[i].message + "</p>");
+			}
+
+		}
 
 
 

@@ -190,7 +190,7 @@ app.post('/api/newChats', function(req, res){
 
 	db.collection('chats').insertOne({
 		timestamp: Date.now(),
-		message: req.body,
+		message: req.body.message,
 		submitter: req.session.user._id
 	});
 
