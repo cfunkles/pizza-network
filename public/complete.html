@@ -93,7 +93,7 @@
                 </div>
 
 
-                <div id="pizzeriaTemplate" style="display: none">
+                <div id="pizzeriaTemplate">
                     <div class="col-md-8">
                         <div class="pizzeria">
                             <!-- pizzeria name get hypertext to their profile -->
@@ -113,7 +113,9 @@
                             <p class="pizzaKids"></p>
                             <!-- pizza slice buttons -->
                             <p class="upVotes"></p>
+                            <button class="btn btn-info upper">Up Slice</button>
                             <p class="downVotes"></p>
+		            		<button class="btn btn-info downer">Down Slice</button>
                         </div>
                     </div>
                 </div>
@@ -124,14 +126,30 @@
         $(document).ready(function() {
             getPizzerias();
         })
-             //write some stuff that will use this ajax call to create all the pizza joint details
+
+        function upListener(pizzeria) {
+            return function() {
+                $.post('/api/upvote', {_id: pizzeria._id}, function(data) {
+                    console.log(data);
+                    getPizzerias();
+                })
+            }
+        }
+
+        function downListener(pizzeria) {
+            return function() {
+                $.post('/api/downvote', {_id: pizzeria._id}, function(data) {
+                    console.log(data);
+                    getPizzerias();
+                })
+            }
+        }
+
         function getPizzerias () {
             $.ajax({
                 method: 'GET',
                 url: '/api/getPizzerias', 
                 success: function(response) {
-                    $('#pizzeriaTemplate').empty();
-                    console.log(response);
                     for (var i = 0; i < response.length; i++) {
                         var pizzaDiv = $('#pizzeriaTemplate').children().first().clone();
                         pizzaDiv.find('.pizzaName').text(response[i].name);
@@ -150,7 +168,9 @@
                         pizzaDiv.find('.pizzaKids').text(response[i].kids);
                         //add click listener closure functions to vote on this page
                         pizzaDiv.find('.upVotes').text(response[i].upVotes);
+                        pizzaDiv.find('.upper').click(upListener(response[i].upVotes));
                         pizzaDiv.find('.downVotes').text(response[i].downVotes);
+                        pizzaDiv.find('.downer').click(downListener(response[i].downVotes));
                         $('#output').append(pizzaDiv);
                     }
                 },
@@ -159,10 +179,10 @@
                 }
             });
         }
-        //write this to toggle details and select the specific button being clicked
-        $('.details').click(function() {
-            $('.details').slideDown();
-        });
+        // //write this to toggle details and select the specific button being clicked
+        // $('.details').click(function() {
+        //     $('.details').slideDown();
+        // });
     </script>
     
 </body>
