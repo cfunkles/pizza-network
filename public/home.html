@@ -76,9 +76,11 @@
 
     <script>
         //top ten stuff
-        // $(document).ready(function() {
-        //     $.get()
-        // })
+        $(document).ready(function() {
+            $.get('/api/topTen', function(data){
+
+            });
+        });
 
         //profile creation
         $('#newPizzaSubmit').click(function() {
@@ -105,8 +107,11 @@
                 $('#newPizzaTel').val('');
                 $('#newPizzaSite').val('');
                 //the following two may not be correct - casey to change
-                $('input[type=checkbox]').removeAttr('checked');
-                $('input[type=radio]').removeAttr('checked');
+                $('input[type=radio]').prop('checked', function () {
+                    return this.getAttribute('checked') == 'checked';
+                });
+                // $('input[type=checkbox]').removeAttr('checked');
+                // $('input[type=radio]').removeAttr('checked');
             });
         });
 

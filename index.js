@@ -123,8 +123,21 @@ app.post('/api/newPlace', function(req, res){
 
 // Top Ten List
 app.get('/api/topTen', function(req, res){
-	db.collection('places').find({
-
+	//a possible solution to the Top Ten List
+	db.collection('places').find({}).toArray(function(err, docs){
+		if(err){
+			return console.log(err);
+		}
+		var totalVotes = [];
+		for(var i = 0; i < docs.length; i++){
+			var diff = docs[i].upVotes - doc[i].downVotes;
+			totalVotes.push([docs[i]._id, diff]);
+		}
+		totalVotes.sort(function(a, b){
+			return b[1] - a[1];
+		});
+		res.send(totalVotes.splice(10));
+		console.log(totalVotes.splice(10));
 	});
 });
 
