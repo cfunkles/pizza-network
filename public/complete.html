@@ -180,6 +180,77 @@
                 }
             });
         }
+
+        function popularSort(data) {
+            var popular = {};
+            for (var i = 0; i < data.length; i++) {
+                data[i].upVotes - data[i].downVotes;
+            }
+            popular.sort(function(a, b) {
+                return a - b;
+            })
+            return popular;
+        }
+
+        function newYorkSort(data) {
+            var newYork = [];
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].newYork === "yes") {
+                    newYork.push(data[i]);
+                }
+            }
+            return newYork;
+        }
+
+        function deepDishSort(data) {
+            var deepDish = [];
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].deepDish === "yes") {
+                    deepDish.push(data[i]);
+                }
+            }
+            return deepDish;
+        }
+
+        function brickOvenSort(data) {
+            var brickOven = [];
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].brickOven === "yes") {
+                    brickOven.push(data[i]);
+                }
+            }
+            return brickOven;
+        }
+
+        function authenticSort(data) {
+            var authentic = [];
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].authentic === "yes") {
+                    authentic.push(data[i]);
+                }
+            }
+            return authentic;
+        }
+
+        function deliverySort(data) {
+            var delivery = [];
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].delivery === "yes") {
+                    delivery.push(data[i]);
+                }
+            }
+            return delivery;
+        }
+
+        function kidSort(data) {
+            var kid = [];
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].kid === "yes") {
+                    kid.push(data[i]);
+                }
+            }
+            return kid;
+        }
         // //write this to toggle details and select the specific button being clicked
         // $('.details').click(function() {
         //     $('.details').slideDown();
