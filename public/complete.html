@@ -85,26 +85,80 @@
                     <span class="col-md-2"><p>Rating <img src="https://thumb1.shutterstock.com/thumb_large/494302/147935048/stock-vector-fast-food-vector-icon-slice-of-pepperoni-pizza-147935048.jpg" alt=""></p></span>
                     <span class="col-md-2"><button class="btn btn-info">Details</button></span>
                 </div>
-                <div id="pizza-output"></div>
+               
+                <div class="container">
+                    <div class="pizzerias">
+                        <div id="output"></div>
+                    </div>
+                </div>
+
+
+                <div id="pizzeriaTemplate" style="display: none">
+                    <div class="col-md-8">
+                        <div class="pizzeria">
+                            <!-- pizzeria name get hypertext to their profile -->
+                            <h2 class="pizzaName"></h2>
+                            <p class="pizzaTel"></p>
+                            <p class="pizzaAdd"></p>
+                            <p class="pizzaCity"></p>
+                            <p class="pizzaState"></p>
+                            <!-- alter output format to clickable link -->
+                            <p class="pizzaURL"></p>
+                            <!-- alter output to soimething boolean friendly -->
+                            <p class="pizzaNY"></p>
+                            <p class="pizzaDD"></p>
+                            <p class="pizzaBO"></p>
+                            <p class="pizzaAU"></p>
+                            <p class="pizzaDel"></p>
+                            <p class="pizzaKids"></p>
+                            <!-- pizza slice buttons -->
+                            <p class="upVotes"></p>
+                            <p class="downVotes"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
        
     </div>
     <script type="text/javascript">
-        //write some stuff that will use this ajax call to create all the pizza joint details
-        $.ajax({
-            method: 'GET',
-            url: '/api/getPizzaPlaces', 
-            success: function(response) {
-                $('#pizza-output').empty();
-                console.log(response);
-                for (var i = 0; i < response.length; i++) {
-                    //$('#pizza-output').text(response[i]);
+        $(document).ready(function() {
+            getPizzerias();
+        })
+             //write some stuff that will use this ajax call to create all the pizza joint details
+        function getPizzerias () {
+            $.ajax({
+                method: 'GET',
+                url: '/api/getPizzerias', 
+                success: function(response) {
+                    $('#pizzeriaTemplate').empty();
+                    console.log(response);
+                    for (var i = 0; i < response.length; i++) {
+                        var pizzaDiv = $('#pizzeriaTemplate').children().first().clone();
+                        pizzaDiv.find('.pizzaName').text(response[i].name);
+                        //format for phone numbers
+                        pizzaDiv.find('.pizzaTel').text(response[i].phone);
+                        pizzaDiv.find('.pizzaAdd').text(response[i].address);
+                        pizzaDiv.find('.pizzaCity').text(response[i].city);
+                        pizzaDiv.find('.pizzaState').text(response[i].state);
+                        pizzaDiv.find('.pizzaURL').text(response[i].url);
+                        //consider different output format for these booleans
+                        pizzaDiv.find('.pizzaNY').text(response[i].newYork);
+                        pizzaDiv.find('.pizzaDD').text(response[i].deepDish);
+                        pizzaDiv.find('.pizzaBO').text(response[i].brickOven);
+                        pizzaDiv.find('.pizzaAU').text(response[i].authentic);
+                        pizzaDiv.find('.pizzaDel').text(response[i].delivery);
+                        pizzaDiv.find('.pizzaKids').text(response[i].kids);
+                        //add click listener closure functions to vote on this page
+                        pizzaDiv.find('.upVotes').text(response[i].upVotes);
+                        pizzaDiv.find('.downVotes').text(response[i].downVotes);
+                        $('#output').append(pizzaDiv);
+                    }
+                },
+                error: function(err) {
+                    $('#pizzeria').text('500 internal server error!');
                 }
-            },
-            error: function(err) {
-                $('#pizza-output').text('500 internal server error!');
-            }
-        });
+            });
+        }
         //write this to toggle details and select the specific button being clicked
         $('.details').click(function() {
             $('.details').slideDown();

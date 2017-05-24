@@ -129,7 +129,7 @@ app.get('/api/topTen', function(req, res){
 });
 
 // List all pizza places
-app.get('/api/getPizzaPlaces', function(req, res) {
+app.get('/api/getPizzerias', function(req, res) {
 	db.collection('places').find({}).toArray(function(err, data) {
 		if(err){
 			console.log(err);
