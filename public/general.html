@@ -13,6 +13,25 @@
 	<title>* #general *</title>
 </head>
 <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">
+                    <!--placeholder image for future logo-->
+                    <img src="http://www.hey.fr/fun/emoji/android/en/icon/android/227-emoji_android_slice_of_pizza.png" alt="firebrick-logo">
+                </a>
+                <!--Create better title style the shit out of this!-->
+                <h4 id='site-name'>Pizza-Network</h4>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <!--To Do: change to buttons, customize the sytle more-->
+                <li class="active"><a href="home.html">Home</a></li>
+                <li><a href="complete.html">Complete Pizzeria List</a> </li>
+                <li><a href="chats.html">The Slicial Network</a></li>
+            </ul>
+        </div>
+    </nav>
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
@@ -26,48 +45,50 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2" id="output">
+			<div class="col-md-8 col-md-offset-2 well" id="chatsOutput">
 				
 			</div>
 		</div>
 	</div>
 
 	<script>
-	// Post new chat
-	$('#sendChat').click(function(){
-		sendChat();
-	});
 
-	$('#sendChat').keyup(function(event){
-		if(event.keyCode === 13){
-			sendChat();
-		}
-	});
 
 		function getChats(){
 			$.get('/api/getChats', function(res){
-				var chats = JSON.parse(res);
+				var chats = res;
 				displayChats(chats);
 			});
 		}
 
 		function sendChat(){
 			var newChat = $('#newChat').val();
-			('#newChat').val("");
+			$('#newChat').val("");
 			$.post('/api/newChats', {
 				message: newChat
 			}, function(res){
-				displayChats(JSON.parse(res));
+				if(res === "success"){
+				getChats();
+			}
 			});
 		}
 
 		function displayChats(chats){
-			$('#output').empty();
-			for(var i = 0; i < chats; i++){
-				$('#output').append("<p>" + chats[i].message + "</p>");
+			$('#chatsOutput').empty();
+			for(var i = 0; i < chats.length; i++){
+				$('#chatsOutput').prepend("<p><strong>" + chats[i].username + ": </strong>" + chats[i].message + "</p>");
 			}
-
 		}
+
+		$('#sendChat').click(sendChat);
+
+		$('#sendChat').keyup(function(event){
+			if(event.keyCode === 13){
+				sendChat();
+			}
+		});
+
+		getChats();
 
 
 

@@ -191,8 +191,10 @@ app.post('/api/newChats', function(req, res){
 	db.collection('chats').insertOne({
 		timestamp: Date.now(),
 		message: req.body.message,
-		submitter: req.session.user._id
+		submitter: req.session.user._id,
+		username: req.session.user.username //is this secure??
 	});
+	res.send("success");
 
 });
 
@@ -208,7 +210,7 @@ app.get('/api/getChats', function(req, res){
 		if(err){
 			return console.log(err);
 		}
-		res.send(data);
+		res.send(docs);
 	});
 });
 
