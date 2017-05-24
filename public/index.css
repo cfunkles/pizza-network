@@ -20,3 +20,11 @@ p img {
 	height: 2em;
 }
 
+.info {
+	background-color: red;
+	color: white;
+}
+
+.login-info {
+	background-color: orange;
+}
