@@ -49,14 +49,48 @@
                 <button class="btn btn-info" id="dive-join">Dive Joint</button>
             </div>
         </aside>
-        <!--The lists page-->
+        <!--The lists page, template ideas for what jquery builds-->
         
-            <div class="col-md-8 well">
+            <div class="col-md-8">
+                <h2 id="list_title">All pizza places</h2>
+                <!--change this title for which filter is being used-->
+                <div class="row well">
+                    <span class="col-md-5"><h4>Rosalee's Pizza</h4></span>
+                    <span class="col-md-3"><p>Longmont, CO</p></span>
+                    <span class="col-md-2"><p>Rating <img src="https://thumb1.shutterstock.com/thumb_large/494302/147935048/stock-vector-fast-food-vector-icon-slice-of-pepperoni-pizza-147935048.jpg" alt=""></p></span>
+                    <span class="col-md-2"><button class="btn btn-info">Details</button></span>
+                    <div class="details row">
+                    <!--toggle this to show details-->
+                        <span class="col-md-2"><p>Address: 461 Main, Longmont, Colorado 80501</p></span>
+                        <span class="col-md-3"><p>Phone: 303-485-5020</p></span>
+                        <span class="col-md-3"><a href="http://rosaleespizzeria.com/"><p>Website: http://rosaleespizzeria.com/</p></a></span>
+                        <span class="col-md-2"><p>Shop Info: New York, No delievery, good for kids!</p></span>
+                    </div>
+                </div>
+                <div class="row well">
+                    <span class="col-md-5"><h4>Toppers Pizza</h4></span>
+                    <span class="col-md-3"><p>Longmont, CO</p></span>
+                    <span class="col-md-2"><p>Rating <img src="https://thumb1.shutterstock.com/thumb_large/494302/147935048/stock-vector-fast-food-vector-icon-slice-of-pepperoni-pizza-147935048.jpg" alt=""></p></span>
+                    <span class="col-md-2"><button class="btn btn-info">Details</button></span>
+                </div>
+                <div class="row well">
+                    <span class="col-md-5"><h4>Old Chicago Pizza</h4></span>
+                    <span class="col-md-3"><p>Longmont, CO</p></span>
+                    <span class="col-md-2"><p>Rating <img src="https://thumb1.shutterstock.com/thumb_large/494302/147935048/stock-vector-fast-food-vector-icon-slice-of-pepperoni-pizza-147935048.jpg" alt=""></p></span>
+                    <span class="col-md-2"><button class="btn btn-info">Details</button></span>
+                </div>
+                <div class="row well">
+                    <span class="col-md-5"><h4>Papa Murphys Pizza</h4></span>
+                    <span class="col-md-3"><p>Longmont, CO</p></span>
+                    <span class="col-md-2"><p>Rating <img src="https://thumb1.shutterstock.com/thumb_large/494302/147935048/stock-vector-fast-food-vector-icon-slice-of-pepperoni-pizza-147935048.jpg" alt=""></p></span>
+                    <span class="col-md-2"><button class="btn btn-info">Details</button></span>
+                </div>
                 <div id="pizza-output"></div>
             </div>
        
     </div>
     <script type="text/javascript">
+        //write some stuff that will use this ajax call to create all the pizza joint details
         $.ajax({
             method: 'GET',
             url: '/api/getPizzaPlaces', 
@@ -70,6 +104,10 @@
             error: function(err) {
                 $('#pizza-output').text('500 internal server error!');
             }
+        });
+        //write this to toggle details and select the specific button being clicked
+        $('.details').click(function() {
+            $('.details').slideDown();
         });
     </script>
     
