@@ -163,11 +163,11 @@
                         pizzaDiv.find('.pizzaAU').text(response[i].authentic);
                         pizzaDiv.find('.pizzaDel').text(response[i].delivery);
                         pizzaDiv.find('.pizzaKids').text(response[i].kids);
-                        //add click listener closure functions to vote on this page
+                        
                         pizzaDiv.find('.upVotes').text(response[i].upVotes);
-                        pizzaDiv.find('.upper').click(upListener(response[i].upVotes));
+                        pizzaDiv.find('.upper').click(upListener(response[i]));
                         pizzaDiv.find('.downVotes').text(response[i].downVotes);
-                        pizzaDiv.find('.downer').click(downListener(response[i].downVotes));
+                        pizzaDiv.find('.downer').click(downListener(response[i]));
                         $('#output').append(pizzaDiv);
                     }
                 },
