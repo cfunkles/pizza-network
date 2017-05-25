@@ -121,56 +121,68 @@
     </div>
     <script>
         $(document).ready(function() {
-            getPizzerias();
+            popularSort();
         });
+        
+        function template(response) {
+            //$('#outputhome').empty();
+            for (var i = 0; i < response.length; i++) {
+                var pizzaDiv = $('#pizzeriahomeTemplate').children().first().clone();
+                pizzaDiv.find('.pizzaName').text(response[i].name);
+                //format for phone numbers
+                pizzaDiv.find('.pizzaTel').text(response[i].phone);
+                pizzaDiv.find('.pizzaAdd').text(response[i].address);
+                pizzaDiv.find('.address').text(response[i].address + " " + response[i].city + ", " +response[i].state);
+                pizzaDiv.find('.pizzaCity').text(response[i].city);
+                pizzaDiv.find('.pizzaState').text(response[i].state);
+                pizzaDiv.find('.pizzaURL').text(response[i].url);
+                //consider different output format for these booleans
+                pizzaDiv.find('.pizzaNY').text(response[i].newYork);
+                pizzaDiv.find('.pizzaDD').text(response[i].deepDish);
+                pizzaDiv.find('.pizzaBO').text(response[i].brickOven);
+                pizzaDiv.find('.pizzaAU').text(response[i].authentic);
+                pizzaDiv.find('.pizzaDel').text(response[i].delivery);
+                pizzaDiv.find('.pizzaKids').text(response[i].kids);
+                pizzaDiv.find('.upVotes').text(response[i].upVotes);
+                pizzaDiv.find('.upper').click(upListener(response[i]));
+                pizzaDiv.find('.downVotes').text(response[i].downVotes);
+                pizzaDiv.find('.downer').click(downListener(response[i]));
+                $('#outputhome').append(pizzaDiv);
+            }
+        }
 
         function getPizzerias () {
             $.ajax({
                 method: 'GET',
                 url: '/api/getPizzerias', 
                 success: function(response) {
-                    $('#outputhome').empty();
-                    for (var i = 0; i < response.length; i++) {
-                        var pizzaDiv = $('#pizzeriahomeTemplate').children().first().clone();
-                        pizzaDiv.find('.pizzaName').text(response[i].name);
-                        //format for phone numbers
-                        pizzaDiv.find('.pizzaTel').text(response[i].phone);
-                        pizzaDiv.find('.pizzaAdd').text(response[i].address);
-                        pizzaDiv.find('.address').text(response[i].address + " " + response[i].city + ", " +response[i].state);
-                        pizzaDiv.find('.pizzaCity').text(response[i].city);
-                        pizzaDiv.find('.pizzaState').text(response[i].state);
-                        pizzaDiv.find('.pizzaURL').text(response[i].url);
-                        //consider different output format for these booleans
-                        pizzaDiv.find('.pizzaNY').text(response[i].newYork);
-                        pizzaDiv.find('.pizzaDD').text(response[i].deepDish);
-                        pizzaDiv.find('.pizzaBO').text(response[i].brickOven);
-                        pizzaDiv.find('.pizzaAU').text(response[i].authentic);
-                        pizzaDiv.find('.pizzaDel').text(response[i].delivery);
-                        pizzaDiv.find('.pizzaKids').text(response[i].kids);
-                        pizzaDiv.find('.upVotes').text(response[i].upVotes);
-                        pizzaDiv.find('.upper').click(upListener(response[i]));
-                        pizzaDiv.find('.downVotes').text(response[i].downVotes);
-                        pizzaDiv.find('.downer').click(downListener(response[i]));
-                        $('#outputhome').append(pizzaDiv);
-                    }
+                    template(response);
                 },
                 error: function(err) {
                     $('#pizzeriahome').text('500 internal server error!');
                 }
             });
         }
-        getPizzerias();
 
-        // make work, then cut off at 10
         function popularSort(data) {
-            var popular = [];
-            for (var i = 0; i < data.length; i++) {
-                popular.push(data[i]);
-            }
-            popular.sort(function(a, b) {
-                return a.score - b.score;
+            $.ajax({
+                method: 'GET',
+                url: 'api/getPizzerias', 
+                success: function(data) {
+                    var popular = [];
+                    for (var i = 0; i < data.length; i++) {
+                        popular.push(data[i]);
+                    }
+                    popular.sort(function(a, b) {
+                        return b.score - a.score;
+                    })
+                    popular.splice(10);
+                    template(popular);
+                },
+                error: function(err) {
+                    $('#pizzeriahome').text('500 internal server error!');
+                }
             });
-            console.log(popular);
         }
 
         function upListener(pizzeria) {

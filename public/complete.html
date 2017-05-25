@@ -115,36 +115,40 @@
                 });
             };
         };
+        
+        function template(response) {
+            $('#output').empty();
+            for (var i = 0; i < response.length; i++) {
+                var pizzaDiv = $('#pizzeriaTemplate').children().first().clone();
+                pizzaDiv.find('.pizzaName').text(response[i].name);
+                //format for phone numbers
+                pizzaDiv.find('.pizzaTel').text(response[i].phone);
+                pizzaDiv.find('.pizzaAdd').text(response[i].address);
+                pizzaDiv.find('.address').text(response[i].address + " " + response[i].city + ", " +response[i].state);
+                pizzaDiv.find('.pizzaCity').text(response[i].city);
+                pizzaDiv.find('.pizzaState').text(response[i].state);
+                pizzaDiv.find('.pizzaURL').text(response[i].url);
+                //consider different output format for these booleans
+                pizzaDiv.find('.pizzaNY').text(response[i].newYork);
+                pizzaDiv.find('.pizzaDD').text(response[i].deepDish);
+                pizzaDiv.find('.pizzaBO').text(response[i].brickOven);
+                pizzaDiv.find('.pizzaAU').text(response[i].authentic);
+                pizzaDiv.find('.pizzaDel').text(response[i].delivery);
+                pizzaDiv.find('.pizzaKids').text(response[i].kids);
+                pizzaDiv.find('.upVotes').text(response[i].upVotes);
+                pizzaDiv.find('.upper').click(upListener(response[i]));
+                pizzaDiv.find('.downVotes').text(response[i].downVotes);
+                pizzaDiv.find('.downer').click(downListener(response[i]));
+                $('#output').append(pizzaDiv);
+            }
+        }
 
         function getPizzerias () {
             $.ajax({
                 method: 'GET',
                 url: '/api/getPizzerias', 
                 success: function(response) {
-                    $('#output').empty();
-                    for (var i = 0; i < response.length; i++) {
-                        var pizzaDiv = $('#pizzeriaTemplate').children().first().clone();
-                        pizzaDiv.find('.pizzaName').text(response[i].name);
-                        //format for phone numbers
-                        pizzaDiv.find('.pizzaTel').text(response[i].phone);
-                        pizzaDiv.find('.pizzaAdd').text(response[i].address);
-                        pizzaDiv.find('.address').text(response[i].address + " " + response[i].city + ", " +response[i].state);
-                        pizzaDiv.find('.pizzaCity').text(response[i].city);
-                        pizzaDiv.find('.pizzaState').text(response[i].state);
-                        pizzaDiv.find('.pizzaURL').text(response[i].url);
-                        //consider different output format for these booleans
-                        pizzaDiv.find('.pizzaNY').text(response[i].newYork);
-                        pizzaDiv.find('.pizzaDD').text(response[i].deepDish);
-                        pizzaDiv.find('.pizzaBO').text(response[i].brickOven);
-                        pizzaDiv.find('.pizzaAU').text(response[i].authentic);
-                        pizzaDiv.find('.pizzaDel').text(response[i].delivery);
-                        pizzaDiv.find('.pizzaKids').text(response[i].kids);
-                        pizzaDiv.find('.upVotes').text(response[i].upVotes);
-                        pizzaDiv.find('.upper').click(upListener(response[i]));
-                        pizzaDiv.find('.downVotes').text(response[i].downVotes);
-                        pizzaDiv.find('.downer').click(downListener(response[i]));
-                        $('#output').append(pizzaDiv);
-                    }
+                    template(response);
                 },
                 error: function(err) {
                     $('#pizzeria').text('500 internal server error!');
@@ -160,12 +164,13 @@
             popular.sort(function(a, b) {
                 return b.score - a.score;
             })
-            console.log(popular);
-        }
+            template(popular);
+        };
+        
 
         $('#popular').click(function() {
             $.get('api/getPizzerias', function(data) {
-                $('#output').append(popularSort(data));
+                popularSort(data);
             })
         })
 
@@ -175,16 +180,13 @@
                 if (data[i].newYork === "yes") {
                     newYork.push(data[i]);
                 }
-                
             }
-            return newYork;
+            template(newYork);
         }
 
         $('#new-york').click(function() {
             $.get('/api/getPizzerias', function(data) {
-                console.log(newYorkSort(data));
-                $('#output').append(newYorkSort(data));
-                //put into template and populate
+                newYorkSort(data);
             })
         })
 
@@ -195,13 +197,12 @@
                     deepDish.push(data[i]);
                 }
             }
-            return deepDish;
+            template(deepDish);
         }
 
         $('#chicago').click(function() {
             $.get('/api/getPizzerias', function(data) {
-                console.log(deepDishSort(data));
-                //put into template and populate
+                deepDishSort(data);
             })
         })
 
@@ -212,13 +213,12 @@
                     brickOven.push(data[i]);
                 }
             }
-            return brickOven;
+            template(brickOven)
         }
 
         $('#brick-oven').click(function() {
             $.get('/api/getPizzerias', function(data) {
-                console.log(brickOvenSort(data));
-                //put into template and populate
+                brickOvenSort(data);
             })
         })
 
@@ -229,13 +229,12 @@
                     authentic.push(data[i]);
                 }
             }
-            return authentic;
+            template(authentic);
         }
 
         $('#authentic').click(function() {
             $.get('/api/getPizzerias', function(data) {
-                console.log(authenticSort(data));
-                //put into template and populate
+                authenticSort(data);
             })
         })
 
@@ -246,13 +245,12 @@
                     delivery.push(data[i]);
                 }
             }
-            return delivery;
+            template(delivery);
         }
 
         $('#delivery').click(function() {
             $.get('/api/getPizzerias', function(data) {
-                console.log(deliverySort(data));
-                //put into template and populate
+                deliverySort(data);
             })
         })
 
@@ -263,13 +261,12 @@
                     kid.push(data[i]);
                 }
             }
-            return kid;
+            template(kid);
         }
 
         $('#kid-friendly').click(function() {
             $.get('/api/getPizzerias', function(data) {
-                console.log(kidSort(data));
-                //put into template and populate
+                kidSort(data);
             })
         })
         // //write this to toggle details and select the specific button being clicked
