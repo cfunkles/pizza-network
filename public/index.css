@@ -21,8 +21,9 @@ p img {
 }
 
 .info {
-	background-color: red;
+	background-color: #a8b9ff;
 	color: white;
+	padding: 15px;
 }
 
 .login-info {
@@ -44,4 +45,8 @@ aside {
 	position:absolute;
 	top:25%;
 	left:10%;
+}
+
+.center {
+	text-align: center;
 }

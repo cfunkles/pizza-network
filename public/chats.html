@@ -16,7 +16,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#" class="navbar-brand">
+                <a href="#" class="navbar-brand info-button">
                     <!--placeholder image for future logo-->
                     <img src="http://www.hey.fr/fun/emoji/android/en/icon/android/227-emoji_android_slice_of_pizza.png" alt="firebrick-logo">
                 </a>
@@ -34,9 +34,10 @@
     <section id="hiddenStuff" style="display: none">
         <div class="container info">
             <div class="row">
-                <div class="container">
-                    <p class="col-sm-6 col-sm-offset-3">Pizza network is a site for people who love pizza! Members can add new pizza places, vote for their favorite spot, find your style of pizza, and talk with other humans about pizza. Enjoy you're Pizzazzzing!!!</p>
-                </div>
+                <p class="col-sm-6 col-sm-offset-3">Pizza network is a site for people who love pizza! Members can add new pizza places, vote for their favorite spot, find your style of pizza, and talk with other humans about pizza. Enjoy you're Pizzazzzing!!!</p>
+            </div>
+            <div class="center">
+                <button class="btn btn-primary clearHidden">Exit</button>
             </div>
         </div>
     </section>
@@ -89,23 +90,19 @@
         });
         
         function showHidden() {
-            $('a').click(function() {
+            $('.info-button').click(function() {
                 $('#stuffToHide').fadeOut();
                 $('#hiddenStuff').fadeIn();
-                $('#hiddenStuff').attr('id', 'stuffToHide');
-                $('#stuffToHide').attr('id', 'hiddenStuff');
             });
         }
         function hideHidden() {
-            $('a').click(function() {
+            $('.clearHidden').click(function() {
                 $('#hiddenStuff').fadeOut();
                 $('#stuffToHide').fadeIn();
-                $('#hiddenStuff').attr('id', 'stuffToHide');
-                $('#stuffToHide').attr('id', 'hiddenStuff');
             });
         }
         showHidden();
-        setTimeout(hideHidden(), 10000);
+        hideHidden();
     </script>
 </body>
 </html>
