@@ -43,32 +43,32 @@
     </section>
     <div class="stuffToHide">
         <!--template to build pizza places-->
-        <div class="topten-template" style="display: none">
-            <h2>The top ten people voted pizza places</h2>
-            <div class="row well">
-                <span class="col-md-1"><strong class="pizzaRank"></strong></span>
-                <span class="col-md-4"><h4 class="pizzaName"></h4></span>
-                <span class="col-md-3"><p class="pizzaShortAddress"></p></span>
-                <span class="col-md-1">
-                    <p class="pizzaUpVotes"></p>
-                    <button class="btn btn-info upper">Up Slice</button></span>
-                <span class="col-md-1">
-                    <p class="pizzaDownVotes"></p>
-                    <button class="btn btn-info downer">Down Slice</button></span>
-                <span class="col-md-2">
-                    <button class="btn btn-info details-button">Details</button></span>
-                    <div class="details row" style="display: none">
-                    <!--toggle this to show details-->
-                        <span class="col-md-3"><p class="pizzaAddress"></p></span>
-                        <span class="col-md-3"><p class="pizzaPhone"></p></span>
-                        <span class="col-md-3"><a class="pizzaURL"href="http://rosaleespizzeria.com/"><p></p></a></span>
-                        <span class="col-md-3"><p class="pizza-prefs"></p></span>
+        <div id="pizzeriahomeTemplate" style="display: none">
+            <div class="col-md-12">
+                <div class="pizzeriahome row well">
+                    <!-- pizzeria name get hypertext to their profile -->
+                    <span class="col-md-8"><h3 class="pizzaName"></h3></span>
+                    <span class="col-md-2"><button class="btn btn-info upper">Up Slice<p class="upVotes"></p></button></span>
+                    <span class="col-md-2"><button class="btn btn-info downer">Down Slice<p class="downVotes"></p></button></span>
+                    <div class="address row" style="display: inline"></div>
+                    <div class="row">
+                        <span class="col-md-2"><p class="pizzaTel"></p></span>
+                        <span class="col-md-3"><p class="pizzaURL"></p></span></div>
+                    <!-- alter output to soimething boolean friendly -->
+                    <div class="row" style="display: inline">
+                        <span class="col-md-2">New York: <p class="pizzaNY"></p></span>
+                        <span class="col-md-2">Deep Dish: <p class="pizzaDD"></p></span>
+                        <span class="col-md-2">Brick Oven: <p class="pizzaBO"></p></span>
+                        <span class="col-md-2">Authentic: <p class="pizzaAU"></p></span>
+                        <span class="col-md-2">Delivers: <p class="pizzaDel"></p></span>
+                        <span class="col-md-2">Kid Friendly: <p class="pizzaKids"></p></span>
                     </div>
+                </div>
             </div>
         </div>
         <!--output for the topten-->
         <div class="container">
-            <div class="topten"></div>
+            <div id="outputhome"></div>
         </div>
 
         <div class="container well">
@@ -119,49 +119,58 @@
     </footer>
 
     <script>
-        //top ten stuff
-        // $(document).ready(function() {
-        //     $.get('/api/topTen', function(data){
-        //     });
-        // });
+        $(document).ready(function() {
+            getPizzerias();
+        })
 
         function getPizzerias () {
             $.ajax({
                 method: 'GET',
                 url: '/api/getPizzerias', 
                 success: function(response) {
-                    $('.topten').empty();
-                    var highestRank = 0;
+                    $('#outputhome').empty();
                     for (var i = 0; i < response.length; i++) {
-                        
-                        var pizzaDiv = $('.topten-template').children().clone();
-
+                        var pizzaDiv = $('#pizzeriahomeTemplate').children().first().clone();
                         pizzaDiv.find('.pizzaName').text(response[i].name);
                         //format for phone numbers
-                        pizzaDiv.find('.pizzaShortAddress').text(response[i].city + response[i].state);
-                        pizzaDiv.find('.pizzaUpVotes').text(response[i].upVotes);
-                        pizzaDiv.find('.upper').click(upListener(response[i]));
-                        pizzaDiv.find('.pizzaDownVotes').text(response[i].downVotes);
-                        pizzaDiv.find('.downer').click(downListener(response[i]));
-                        
-                        $('.details-button').click(detailsListener(response[i]));
-
+                        pizzaDiv.find('.pizzaTel').text(response[i].phone);
+                        pizzaDiv.find('.pizzaAdd').text(response[i].address);
+                        pizzaDiv.find('.address').text(response[i].address + " " + response[i].city + ", " +response[i].state);
+                        pizzaDiv.find('.pizzaCity').text(response[i].city);
+                        pizzaDiv.find('.pizzaState').text(response[i].state);
+                        pizzaDiv.find('.pizzaURL').text(response[i].url);
                         //consider different output format for these booleans
-                        pizzaDiv.find('.pizzaAddress').text(response[i].address + response[i].city + response[i].state);
-                        pizzaDiv.find('.pizzaPhone').text(response[i].phone);
-                        pizzaDiv.find('.pizzaURL').attr('href', response[i].URL);
-                        pizzaDiv.find('.pizza-prefs').text(response[i].newYork + response[i].deepDish + response[i].brickOven + response[i].authentic + response[i].delivery + response[i].kids);
-                        //add click listener closure functions to vote on this page
-                        
-                        $('.topten').append(pizzaDiv);
+                        pizzaDiv.find('.pizzaNY').text(response[i].newYork);
+                        pizzaDiv.find('.pizzaDD').text(response[i].deepDish);
+                        pizzaDiv.find('.pizzaBO').text(response[i].brickOven);
+                        pizzaDiv.find('.pizzaAU').text(response[i].authentic);
+                        pizzaDiv.find('.pizzaDel').text(response[i].delivery);
+                        pizzaDiv.find('.pizzaKids').text(response[i].kids);
+                        pizzaDiv.find('.upVotes').text(response[i].upVotes);
+                        pizzaDiv.find('.upper').click(upListener(response[i]));
+                        pizzaDiv.find('.downVotes').text(response[i].downVotes);
+                        pizzaDiv.find('.downer').click(downListener(response[i]));
+                        $('#outputhome').append(pizzaDiv);
                     }
                 },
                 error: function(err) {
-                    $('#pizzeria').text('500 internal server error!');
+                    $('#pizzeriahome').text('500 internal server error!');
                 }
             });
         }
         getPizzerias();
+
+        // make work, then cut off at 10
+        function popularSort(data) {
+            var popular = [];
+            for (var i = 0; i < data.length; i++) {
+                popular.push(data[i]);
+            }
+            popular.sort(function(a, b) {
+                return a.score - b.score;
+            })
+            console.log(popular);
+        }
 
         function upListener(pizzeria) {
             return function() {
