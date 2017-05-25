@@ -53,7 +53,7 @@
 
 	<script>
 
-
+		// function to get chats from db and then a call to display chats
 		function getChats(){
 			$.get('/api/getChats', function(res){
 				var chats = res;
@@ -61,6 +61,7 @@
 			});
 		}
 
+		// function to send a new chat to db
 		function sendChat(){
 			var newChat = $('#newChat').val();
 			$('#newChat').val("");
@@ -74,6 +75,7 @@
 			});
 		}
 
+		// function to display chats by clearing the chatsOutput div and repopulating
 		function displayChats(chats){
 			$('#chatsOutput').empty();
 			var generalChats = [];
@@ -83,7 +85,7 @@
 					generalChats.push(chats[j]);
 				}
 			}
-			console.log(generalChats);
+			// prepend all chats to chatsOutput div so most recent is on top
 			for(var i = 0; i < generalChats.length; i++){
 				$('#chatsOutput').prepend("<p><strong>" + generalChats[i].username + ": </strong>" + generalChats[i].message + "</p>");
 			}

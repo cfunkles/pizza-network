@@ -121,7 +121,7 @@
     <script>
         $(document).ready(function() {
             getPizzerias();
-        })
+        });
 
         function getPizzerias () {
             $.ajax({
@@ -168,7 +168,7 @@
             }
             popular.sort(function(a, b) {
                 return a.score - b.score;
-            })
+            });
             console.log(popular);
         }
 
