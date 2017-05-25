@@ -156,18 +156,18 @@
             }
         }
 
-        function getPizzerias () {
-            $.ajax({
-                method: 'GET',
-                url: '/api/getPizzerias', 
-                success: function(response) {
-                    template(response);
-                },
-                error: function(err) {
-                    $('#pizzeriahome').text('500 internal server error!');
-                }
-            });
-        }
+        // function getPizzerias () {
+        //     $.ajax({
+        //         method: 'GET',
+        //         url: '/api/getPizzerias', 
+        //         success: function(response) {
+        //             template(response);
+        //         },
+        //         error: function(err) {
+        //             $('#pizzeriahome').text('500 internal server error!');
+        //         }
+        //     });
+        // }
 
         function popularSort(data) {
             $.ajax({
@@ -194,7 +194,7 @@
             return function() {
                 $.post('/api/upvote', {_id: pizzeria._id}, function(data) {
                     console.log(data);
-                    getPizzerias();
+                    popularSort();
                 });
             };
         }
@@ -203,7 +203,7 @@
             return function() {
                 $.post('/api/downvote', {_id: pizzeria._id}, function(data) {
                     console.log(data);
-                    getPizzerias();
+                    popularSort();
                 });
             };
         }
