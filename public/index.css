@@ -3,7 +3,7 @@
 	height: 1.5em
 }
 
-div.row {
+#list_title {
 	margin-top: 60px
 }
 
@@ -27,4 +27,21 @@ p img {
 
 .login-info {
 	background-color: orange;
+}
+
+footer {
+	background-color: black;
+
+	bottom: 0;
+	display: block;
+}
+
+aside {
+	position: fixed;
+}
+
+#hiddenStuff {
+	position:absolute;
+	top:25%;
+	left:10%;
 }

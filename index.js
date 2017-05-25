@@ -109,6 +109,7 @@ app.post('/api/newPlace', function(req, res){
 		kids: req.body.kids,
 		upVotes: parseInt(req.body.upVotes),
 		downVotes: parseInt(req.body.downVotes),
+		score: parseInt(req.body.score),
 		submitter: req.session.user._id
 	}, function(err, data){
 		if(err){
@@ -123,7 +124,7 @@ app.post('/api/newPlace', function(req, res){
 
 // Up and Down Vote Handlers
 app.post('/api/upvote', function(req, res) {
-	db.collection('places').updateOne({_id: ObjectID(req.body._id)}, {$inc: {upVotes: 1}}, function(err, result) {
+	db.collection('places').update({_id: ObjectID(req.body._id)}, {$inc: {upVotes: 1, score: 1}}, function(err, result) {
 		if (err) {
 			console.log(err);
 		}
@@ -133,13 +134,13 @@ app.post('/api/upvote', function(req, res) {
 });
 
 app.post('/api/downvote', function(req, res) {
-	db.collection('places').updateOne({_id: ObjectID(req.body._id)}, {$inc: {downVotes: -1}}, function(err, result) {
+	db.collection('places').update({_id: ObjectID(req.body._id)}, {$inc: {downVotes: -1, score: -1}}, function(err, result) {
 		if (err) {
 			console.log(err);
 		}
 		console.log('result? ', result);
 		res.send(result);
-	});
+	});	
 });
 
 // Top Ten List
@@ -191,8 +192,11 @@ app.post('/api/newChats', function(req, res){
 	db.collection('chats').insertOne({
 		timestamp: Date.now(),
 		message: req.body.message,
-		submitter: req.session.user._id
+		type: req.body.type,
+		submitter: req.session.user._id,
+		username: req.session.user.username //is this secure??
 	});
+	res.send("success");
 
 });
 
@@ -208,7 +212,7 @@ app.get('/api/getChats', function(req, res){
 		if(err){
 			return console.log(err);
 		}
-		res.send(data);
+		res.send(docs);
 	});
 });
 

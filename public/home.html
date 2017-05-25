@@ -32,48 +32,91 @@
         </div>
     </nav>
 
-    <div class="container" id="topten">
-
-        
-    </div>
-
-    <div class="container">
-		<div class="row">
-			<div class="col-sm-4 col-sm-offset-4">
-				Name: <input type="text" id="newPizzaName" class="form-control">
-				Telephone: <input type="text" id="newPizzaTel" class="form-control">
-				URL: <input type="text" id="newPizzaSite" class="form-control">
-                Address: <input type="text" id="newPizzaAdd" class="form-control">
-                City: <input type="text" id="newPizzaCity" class="form-control">
-                State: <input type="text" id="newPizzaState" class="form-control">
-                <!-- fix the radio buttons so that they unselect -->
-				<h4>Pizza Styles:</h4>
-                <div class="pizzaStyles">
-                New York:
-                <input type="radio" name="newYork" value="yes" checked> Yes
-                <input type="radio" name="newYork" value="no"> No<br>
-                Deep Dish:
-                <input type="radio" name="deepDish" value="yes" checked> Yes
-                <input type="radio" name="deepDish" value="no"> No<br>
-                Brick Oven:
-                <input type="radio" name="brickOven" value="yes" checked> Yes
-                <input type="radio" name="brickOven" value="no"> No<br>
-                Authentic:
-                <input type="radio" name="authentic" value="yes" checked> Yes
-                <input type="radio" name="authentic" value="no"> No<br>
+    <section id="hiddenStuff" style="display: none">
+        <div class="container info">
+            <div class="row">
+                <div class="container">
+                    <p class="col-sm-6 col-sm-offset-3">Pizza network is a site for people who love pizza! Members can add new pizza places, vote for their favorite spot, find your style of pizza, and talk with other humans about pizza. Enjoy you're Pizzazzzing!!!</p>
                 </div>
-                <div class="additionalOptions">
-				<h4>Delivery?:</h4>
-                    <input type="radio" name="delivery" value="yes" checked> Yes
-                    <input type="radio" name="delivery" value="no"> No<br>
-                <h4>Kid Friendly?:</h4>
-                    <input type="radio" name="kids" value="yes" checked> Yes
-                    <input type="radio" name="kids" value="no"> No<br>
-                </div><br>
-                <button class="btn btn-info" id="newPizzaSubmit">Submit Pizzeria</button>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </section>
+    <div class="stuffToHide">
+        <!--template to build pizza places-->
+        <div class="topten-template" style="display: none">
+            <h2>The top ten people voted pizza places</h2>
+            <div class="row well">
+                <span class="col-md-1"><strong class="pizzaRank"></strong></span>
+                <span class="col-md-4"><h4 class="pizzaName"></h4></span>
+                <span class="col-md-3"><p class="pizzaShortAddress"></p></span>
+                <span class="col-md-1">
+                    <p class="pizzaUpVotes"></p>
+                    <button class="btn btn-info upper">Up Slice</button></span>
+                <span class="col-md-1">
+                    <p class="pizzaDownVotes"></p>
+                    <button class="btn btn-info downer">Down Slice</button></span>
+                <span class="col-md-2">
+                    <button class="btn btn-info details-button">Details</button></span>
+                    <div class="details row" style="display: none">
+                    <!--toggle this to show details-->
+                        <span class="col-md-3"><p class="pizzaAddress"></p></span>
+                        <span class="col-md-3"><p class="pizzaPhone"></p></span>
+                        <span class="col-md-3"><a class="pizzaURL"href="http://rosaleespizzeria.com/"><p></p></a></span>
+                        <span class="col-md-3"><p class="pizza-prefs"></p></span>
+                    </div>
+            </div>
+        </div>
+        <!--output for the topten-->
+        <div class="container">
+            <div class="topten"></div>
+        </div>
+
+        <div class="container well">
+            <div class="row pizzaCreate">
+                <p class="col-md-4 col-md-offset-3">Do you know a pizza place that might make it on this list?</p>
+                <button class="btn btn-primary col-md-2 newPizzaCreate">Click To Add!</button>
+            </div>
+    		<div class="row newPizzaPlace" style="display: none">
+    			<div class="col-sm-4 col-sm-offset-4">
+                    <h3>Fill in the info below to add a new Jamming place.</h3>
+    				Name: <input type="text" id="newPizzaName" class="form-control">
+    				Telephone: <input type="text" id="newPizzaTel" class="form-control">
+    				URL: <input type="text" id="newPizzaSite" class="form-control">
+                    Address: <input type="text" id="newPizzaAdd" class="form-control">
+                    City: <input type="text" id="newPizzaCity" class="form-control">
+                    State: <input type="text" id="newPizzaState" class="form-control">
+                    <!-- fix the radio buttons so that they unselect -->
+    				<h4>Pizza Styles:</h4>
+                    <div class="pizzaStyles">
+                    New York:
+                    <input type="radio" name="newYork" value="yes" checked> Yes
+                    <input type="radio" name="newYork" value="no"> No<br>
+                    Deep Dish:
+                    <input type="radio" name="deepDish" value="yes" checked> Yes
+                    <input type="radio" name="deepDish" value="no"> No<br>
+                    Brick Oven:
+                    <input type="radio" name="brickOven" value="yes" checked> Yes
+                    <input type="radio" name="brickOven" value="no"> No<br>
+                    Authentic:
+                    <input type="radio" name="authentic" value="yes" checked> Yes
+                    <input type="radio" name="authentic" value="no"> No<br>
+                    </div>
+                    <div class="additionalOptions">
+    				<h4>Delivery?:</h4>
+                        <input type="radio" name="delivery" value="yes" checked> Yes
+                        <input type="radio" name="delivery" value="no"> No<br>
+                    <h4>Kid Friendly?:</h4>
+                        <input type="radio" name="kids" value="yes" checked> Yes
+                        <input type="radio" name="kids" value="no"> No<br>
+                    </div><br>
+                    <button class="btn btn-info" id="newPizzaSubmit">Submit Pizzeria</button>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <footer>
+        <p>The Pizza Network &copy; Casey, Chuck, David</p>
+    </footer>
 
     <script>
         //top ten stuff
@@ -82,7 +125,84 @@
         //     });
         // });
 
+        function getPizzerias () {
+            $.ajax({
+                method: 'GET',
+                url: '/api/getPizzerias', 
+                success: function(response) {
+                    $('.topten').empty();
+                    var highestRank = 0;
+                    for (var i = 0; i < response.length; i++) {
+                        
+                        var pizzaDiv = $('.topten-template').children().clone();
+
+                        pizzaDiv.find('.pizzaName').text(response[i].name);
+                        //format for phone numbers
+                        pizzaDiv.find('.pizzaShortAddress').text(response[i].city + response[i].state);
+                        pizzaDiv.find('.pizzaUpVotes').text(response[i].upVotes);
+                        pizzaDiv.find('.upper').click(upListener(response[i]));
+                        pizzaDiv.find('.pizzaDownVotes').text(response[i].downVotes);
+                        pizzaDiv.find('.downer').click(downListener(response[i]));
+                        
+                        $('.details-button').click(detailsListener(response[i]));
+
+                        //consider different output format for these booleans
+                        pizzaDiv.find('.pizzaAddress').text(response[i].address + response[i].city + response[i].state);
+                        pizzaDiv.find('.pizzaPhone').text(response[i].phone);
+                        pizzaDiv.find('.pizzaURL').attr('href', response[i].URL);
+                        pizzaDiv.find('.pizza-prefs').text(response[i].newYork + response[i].deepDish + response[i].brickOven + response[i].authentic + response[i].delivery + response[i].kids);
+                        //add click listener closure functions to vote on this page
+                        
+                        $('.topten').append(pizzaDiv);
+                    }
+                },
+                error: function(err) {
+                    $('#pizzeria').text('500 internal server error!');
+                }
+            });
+        }
+        getPizzerias();
+
+        function upListener(pizzeria) {
+            return function() {
+                $.post('/api/upvote', {_id: pizzeria._id}, function(data) {
+                    console.log(data);
+                    getPizzerias();
+                });
+            };
+        }
+
+        function downListener(pizzeria) {
+            return function() {
+                $.post('/api/downvote', {_id: pizzeria._id}, function(data) {
+                    console.log(data);
+                    getPizzerias();
+                });
+            };
+        }
+
+        function detailsListener(pizzeria) {
+            console.log('blahhh');
+            return function() {
+                console.log('blahhh');
+                pizzaDiv.find('.details').slideDown('slow', function() {
+                    getPizzerias();
+                    console.log('blahh');
+                }); 
+            };
+        }
+
+
+        
         //profile creation
+        $('.newPizzaCreate').click(function() {
+            $('.pizzaCreate').slideUp('fast', function() {
+                $('.newPizzaPlace').slideDown('slow', function() {
+
+                });
+            });
+        }); 
+
         $('#newPizzaSubmit').click(function() {
             $.post('/api/newPlace', {
                 name: $('#newPizzaName').val(),
@@ -99,6 +219,7 @@
                 kids: $('input[name=kids]:checked').val(),
                 upVotes: 0,
                 downVotes: 0,
+                score: 0
             }, function () {
                 $('#newPizzaName').val('');
                 $('#newPizzaAdd').val('');
@@ -115,7 +236,10 @@
             });
         });
 
-
+        $('a').click(function() {
+            $('.stuffToHide').fadeOut();
+            $('#hiddenStuff').fadeIn();
+        });
     </script>
 </body>
 </html>

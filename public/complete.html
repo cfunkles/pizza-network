@@ -35,7 +35,7 @@
     <div class="row container-fluid">
         <aside class="col-sm-3">
             <div class="btn-group-vertical btn-group-lg">
-                <h2><span class="label label-primary">Find your Pizza spot!</span></h2>
+                <h2 style="margin-top: 60px"><span class="label label-primary">Find Pizzeria By Filter</span></h2>
                 <button class="btn btn-info" id="popular">Voted Best</button>
                 <button class="btn btn-info" id="new-york">New York Slice</button>
                 <button class="btn btn-info" id="chicago">Chicago Deep Dish</button>
@@ -47,71 +47,34 @@
         </aside>
         <!--The lists page, template ideas for what jquery builds-->
         
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <h2 id="list_title">All pizza places</h2>
                 <!--change this title for which filter is being used-->
-                <div class="row well">
-                    <span class="col-md-5"><h4>Rosalee's Pizza</h4></span>
-                    <span class="col-md-3"><p>Longmont, CO</p></span>
-                    <span class="col-md-2"><p>Rating <img src="https://thumb1.shutterstock.com/thumb_large/494302/147935048/stock-vector-fast-food-vector-icon-slice-of-pepperoni-pizza-147935048.jpg" alt=""></p></span>
-                    <span class="col-md-2"><button class="btn btn-info">Details</button></span>
-                    <div class="details row">
-                    <!--toggle this to show details-->
-                        <span class="col-md-2"><p>Address: 461 Main, Longmont, Colorado 80501</p></span>
-                        <span class="col-md-3"><p>Phone: 303-485-5020</p></span>
-                        <span class="col-md-3"><a href="http://rosaleespizzeria.com/"><p>Website: http://rosaleespizzeria.com/</p></a></span>
-                        <span class="col-md-2"><p>Shop Info: New York, No delievery, good for kids!</p></span>
-                    </div>
-                </div>
-                <div class="row well">
-                    <span class="col-md-5"><h4>Toppers Pizza</h4></span>
-                    <span class="col-md-3"><p>Longmont, CO</p></span>
-                    <span class="col-md-2"><p>Rating <img src="https://thumb1.shutterstock.com/thumb_large/494302/147935048/stock-vector-fast-food-vector-icon-slice-of-pepperoni-pizza-147935048.jpg" alt=""></p></span>
-                    <span class="col-md-2"><button class="btn btn-info">Details</button></span>
-                </div>
-                <div class="row well">
-                    <span class="col-md-5"><h4>Old Chicago Pizza</h4></span>
-                    <span class="col-md-3"><p>Longmont, CO</p></span>
-                    <span class="col-md-2"><p>Rating <img src="https://thumb1.shutterstock.com/thumb_large/494302/147935048/stock-vector-fast-food-vector-icon-slice-of-pepperoni-pizza-147935048.jpg" alt=""></p></span>
-                    <span class="col-md-2"><button class="btn btn-info">Details</button></span>
-                </div>
-                <div class="row well">
-                    <span class="col-md-5"><h4>Papa Murphys Pizza</h4></span>
-                    <span class="col-md-3"><p>Longmont, CO</p></span>
-                    <span class="col-md-2"><p>Rating <img src="https://thumb1.shutterstock.com/thumb_large/494302/147935048/stock-vector-fast-food-vector-icon-slice-of-pepperoni-pizza-147935048.jpg" alt=""></p></span>
-                    <span class="col-md-2"><button class="btn btn-info">Details</button></span>
-                </div>
-               
-                <div class="container">
+                 <div class="container">
                     <div class="pizzerias">
                         <div id="output"></div>
                     </div>
                 </div>
-
-
                 <div id="pizzeriaTemplate" style="display: none">
                     <div class="col-md-8">
-                        <div class="pizzeria">
+                        <div class="pizzeria row well">
                             <!-- pizzeria name get hypertext to their profile -->
-                            <h2 class="pizzaName"></h2>
-                            <p class="pizzaTel"></p>
-                            <p class="pizzaAdd"></p>
-                            <p class="pizzaCity"></p>
-                            <p class="pizzaState"></p>
-                            <!-- alter output format to clickable link -->
-                            <p class="pizzaURL"></p>
+                            <span class="col-md-8"><h3 class="pizzaName"></h3></span>
+                            <span class="col-md-2"><button class="btn btn-info upper">Up Slice<p class="upVotes"></p></button></span>
+		            		<span class="col-md-2"><button class="btn btn-info downer">Down Slice<p class="downVotes"></p></button></span>
+                            <div class="address row" style="display: inline"></div>
+                            <div class="row">
+                                <span class="col-md-2"><p class="pizzaTel"></p></span>
+                                <span class="col-md-3"><p class="pizzaURL"></p></span></div>
                             <!-- alter output to soimething boolean friendly -->
-                            <p class="pizzaNY"></p>
-                            <p class="pizzaDD"></p>
-                            <p class="pizzaBO"></p>
-                            <p class="pizzaAU"></p>
-                            <p class="pizzaDel"></p>
-                            <p class="pizzaKids"></p>
-                            <!-- pizza slice buttons -->
-                            <p class="upVotes"></p>
-                            <button class="btn btn-info upper">Up Slice</button>
-                            <p class="downVotes"></p>
-		            		<button class="btn btn-info downer">Down Slice</button>
+                            <div class="row" style="display: inline">
+                                <span class="col-md-2">New York: <p class="pizzaNY"></p></span>
+                                <span class="col-md-2">Deep Dish: <p class="pizzaDD"></p></span>
+                                <span class="col-md-2">Brick Oven: <p class="pizzaBO"></p></span>
+                                <span class="col-md-2">Authentic: <p class="pizzaAU"></p></span>
+                                <span class="col-md-2">Delivers: <p class="pizzaDel"></p></span>
+                                <span class="col-md-2">Kid Friendly: <p class="pizzaKids"></p></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -121,25 +84,39 @@
     <script type="text/javascript">
         $(document).ready(function() {
             getPizzerias();
-        })
+        });
 
         function upListener(pizzeria) {
             return function() {
                 $.post('/api/upvote', {_id: pizzeria._id}, function(data) {
                     console.log(data);
                     getPizzerias();
-                })
-            }
+                });
+            };
+<<<<<<< HEAD
+<<<<<<< HEAD
+        };
+=======
+=======
+>>>>>>> origin/master
         }
+>>>>>>> origin/master
 
         function downListener(pizzeria) {
             return function() {
                 $.post('/api/downvote', {_id: pizzeria._id}, function(data) {
                     console.log(data);
                     getPizzerias();
-                })
-            }
+                });
+            };
+<<<<<<< HEAD
+<<<<<<< HEAD
+        };
+=======
+=======
+>>>>>>> origin/master
         }
+>>>>>>> origin/master
 
         function getPizzerias () {
             $.ajax({
@@ -153,6 +130,7 @@
                         //format for phone numbers
                         pizzaDiv.find('.pizzaTel').text(response[i].phone);
                         pizzaDiv.find('.pizzaAdd').text(response[i].address);
+                        pizzaDiv.find('.address').text(response[i].address + " " + response[i].city + ", " +response[i].state);
                         pizzaDiv.find('.pizzaCity').text(response[i].city);
                         pizzaDiv.find('.pizzaState').text(response[i].state);
                         pizzaDiv.find('.pizzaURL').text(response[i].url);
@@ -163,7 +141,6 @@
                         pizzaDiv.find('.pizzaAU').text(response[i].authentic);
                         pizzaDiv.find('.pizzaDel').text(response[i].delivery);
                         pizzaDiv.find('.pizzaKids').text(response[i].kids);
-                        
                         pizzaDiv.find('.upVotes').text(response[i].upVotes);
                         pizzaDiv.find('.upper').click(upListener(response[i]));
                         pizzaDiv.find('.downVotes').text(response[i].downVotes);
@@ -177,16 +154,16 @@
             });
         }
 
-        // function popularSort(data) {
-        //     var popular = {};
-        //     for (var i = 0; i < data.length; i++) {
-        //         data[i].upVotes - data[i].downVotes;
-        //     }
-        //     popular.sort(function(a, b) {
-        //         return a - b;
-        //     })
-        //     return popular;
-        // }
+        function popularSort(data) {
+            var popular = [];
+            for (var i = 0; i < data.length; i++) {
+                popular.push(data[i]);
+            }
+            popular.sort(function(a, b) {
+                return a.score - b.score;
+            })
+            console.log(popular);
+        }
 
         //attach voting sort to click listener here
 
@@ -196,6 +173,7 @@
                 if (data[i].newYork === "yes") {
                     newYork.push(data[i]);
                 }
+                
             }
             return newYork;
         }
@@ -203,9 +181,10 @@
         $('#new-york').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 console.log(newYorkSort(data));
+                $
                 //put into template and populate
-            })
-        })
+            });
+        });
 
         function deepDishSort(data) {
             var deepDish = [];
@@ -221,8 +200,8 @@
             $.get('/api/getPizzerias', function(data) {
                 console.log(deepDishSort(data));
                 //put into template and populate
-            })
-        })
+            });
+        });
 
         function brickOvenSort(data) {
             var brickOven = [];
@@ -238,8 +217,8 @@
             $.get('/api/getPizzerias', function(data) {
                 console.log(brickOvenSort(data));
                 //put into template and populate
-            })
-        })
+            });
+        });
 
         function authenticSort(data) {
             var authentic = [];
@@ -252,11 +231,11 @@
         }
 
         $('#authentic').click(function() {
-            $.post('/api/getPizzerias', function(data) {
+            $.get('/api/getPizzerias', function(data) {
                 console.log(authenticSort(data));
                 //put into template and populate
-            })
-        })
+            });
+        });
 
         function deliverySort(data) {
             var delivery = [];
@@ -269,11 +248,11 @@
         }
 
         $('#delivery').click(function() {
-            $.post('/api/getPizzerias', function(data) {
+            $.get('/api/getPizzerias', function(data) {
                 console.log(deliverySort(data));
                 //put into template and populate
-            })
-        })
+            });
+        });
 
         function kidSort(data) {
             var kid = [];
@@ -286,11 +265,11 @@
         }
 
         $('#kid-friendly').click(function() {
-            $.post('/api/getPizzerias', function(data) {
+            $.get('/api/getPizzerias', function(data) {
                 console.log(kidSort(data));
                 //put into template and populate
-            })
-        })
+            });
+        });
         // //write this to toggle details and select the specific button being clicked
         // $('.details').click(function() {
         //     $('.details').slideDown();
