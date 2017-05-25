@@ -156,12 +156,16 @@
                 popular.push(data[i]);
             }
             popular.sort(function(a, b) {
-                return a.score - b.score;
+                return b.score - a.score;
             })
             console.log(popular);
         }
 
-        //attach voting sort to click listener here
+        $('#popular').click(function() {
+            $.get('api/getPizzerias', function(data) {
+                $('#output').append(popularSort(data));
+            })
+        })
 
         function newYorkSort(data) {
             var newYork = [];
@@ -177,7 +181,7 @@
         $('#new-york').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 console.log(newYorkSort(data));
-                $
+                $('#output').append(newYorkSort(data));
                 //put into template and populate
             })
         })
