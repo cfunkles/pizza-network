@@ -54,7 +54,7 @@
                     <div class="address row" style="display: inline"></div>
                     <div class="row">
                         <span class="col-md-2"><p class="pizzaTel"></p></span>
-                        <span class="col-md-3"><p class="pizzaURL"></p></span></div>
+                        <span class="col-md-3"><a href="" class="pizzaURL" target="_blank"></a></span></div>
                     <!-- alter output to soimething boolean friendly -->
                     <div class="row" style="display: inline">
                         <span class="col-md-2">New York: <p class="pizzaNY"></p></span>
@@ -141,6 +141,7 @@
                 pizzaDiv.find('.address').text(response[i].address + " " + response[i].city + ", " +response[i].state);
                 pizzaDiv.find('.pizzaCity').text(response[i].city);
                 pizzaDiv.find('.pizzaState').text(response[i].state);
+                pizzaDiv.find('.pizzaURL').attr('href', response[i].url);
                 pizzaDiv.find('.pizzaURL').text(response[i].url);
                 //consider different output format for these booleans
                 pizzaDiv.find('.pizzaNY').text(response[i].newYork);
