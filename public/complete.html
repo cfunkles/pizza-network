@@ -31,22 +31,32 @@
             </ul>
         </div>
     </nav>
-    <!--Sidebar for filtering pizza lists-->
-    <div class="row container-fluid">
-        <aside class="col-sm-3">
-            <div class="btn-group-vertical btn-group-lg">
-                <h2 style="margin-top: 60px"><span class="label label-primary">Find Pizzeria By Filter</span></h2>
-                <button class="btn btn-info" id="popular">Voted Best</button>
-                <button class="btn btn-info" id="new-york">New York Slice</button>
-                <button class="btn btn-info" id="chicago">Chicago Deep Dish</button>
-                <button class="btn btn-info" id="brick-oven">Brick Oven</button>
-                <button class="btn btn-info" id="authentic">Authentic Style</button>
-                <button class="btn btn-info" id="kid-friendly">Kid Friendly</button>
-                <button class="btn btn-info" id="delivery">Delivers</button>
+    <section id="hiddenStuff" style="display: none">
+        <div class="container info">
+            <div class="row">
+                <div class="container">
+                    <p class="col-sm-6 col-sm-offset-3">Pizza network is a site for people who love pizza! Members can add new pizza places, vote for their favorite spot, find your style of pizza, and talk with other humans about pizza. Enjoy you're Pizzazzzing!!!</p>
+                </div>
             </div>
-        </aside>
-        <!--The lists page, template ideas for what jquery builds-->
-        
+        </div>
+    </section>
+    <!--Sidebar for filtering pizza lists-->
+    <div id="stuffToHide">
+        <div class="row container-fluid">
+            <aside class="col-sm-3">
+                <div class="btn-group-vertical btn-group-lg">
+                    <h2 style="margin-top: 60px"><span class="label label-primary">Find Pizzeria By Filter</span></h2>
+                    <button class="btn btn-info" id="popular">Voted Best</button>
+                    <button class="btn btn-info" id="new-york">New York Slice</button>
+                    <button class="btn btn-info" id="chicago">Chicago Deep Dish</button>
+                    <button class="btn btn-info" id="brick-oven">Brick Oven</button>
+                    <button class="btn btn-info" id="authentic">Authentic Style</button>
+                    <button class="btn btn-info" id="kid-friendly">Kid Friendly</button>
+                    <button class="btn btn-info" id="delivery">Delivers</button>
+                </div>
+            </aside>
+            <!--The lists page, template ideas for what jquery builds-->
+            
             <div class="col-md-9">
                 <h2 id="list_title">All pizza places</h2>
                 <!--change this title for which filter is being used-->
@@ -79,7 +89,7 @@
                     </div>
                 </div>
             </div>
-       
+        </div>
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -260,6 +270,24 @@
         // $('.details').click(function() {
         //     $('.details').slideDown();
         // });
+        function showHidden() {
+            $('a').click(function() {
+                $('#stuffToHide').fadeOut();
+                $('#hiddenStuff').fadeIn();
+                $('#hiddenStuff').attr('id', 'stuffToHide');
+                $('#stuffToHide').attr('id', 'hiddenStuff');
+            });
+        }
+        function hideHidden() {
+            $('a').click(function() {
+                $('#hiddenStuff').fadeOut();
+                $('#stuffToHide').fadeIn();
+                $('#hiddenStuff').attr('id', 'stuffToHide');
+                $('#stuffToHide').attr('id', 'hiddenStuff');
+            });
+        }
+        showHidden();
+        setTimeout(hideHidden(), 10000);
     </script>
     
 </body>

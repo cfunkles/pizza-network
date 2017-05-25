@@ -31,30 +31,39 @@
             </ul>
         </div>
     </nav>
-
-    <div class="container" style="margin-top: 60px">
-    <div class="row col-md-4 col-md-offset-1">
-            <div class="well" id="general">
-                <h2>#general</h2>
-                <p>Join this general pizza chat and learn where to find the best pizza!</p>
-            </div>
-            <div class="well" id="weird">
-                <h2>#weirdtoppings</h2>
-                <p>Only interested in non-traditional toppings? This is for you!</p>
+    <section id="hiddenStuff" style="display: none">
+        <div class="container info">
+            <div class="row">
+                <div class="container">
+                    <p class="col-sm-6 col-sm-offset-3">Pizza network is a site for people who love pizza! Members can add new pizza places, vote for their favorite spot, find your style of pizza, and talk with other humans about pizza. Enjoy you're Pizzazzzing!!!</p>
+                </div>
             </div>
         </div>
-        <div class="row col-md-4 col-md-offset-2">
-            <div class="well" id="kid">
-                <h2>#kidfriendly</h2>
-                <p>Find all the places your kids will love, and hear about which ones to avoid.</p>
+    </section>
+    <div id="stuffToHide">
+        <div class="container" style="margin-top: 60px">
+            <div class="row col-md-4 col-md-offset-1">
+                <div class="well" id="general">
+                    <h2>#general</h2>
+                    <p>Join this general pizza chat and learn where to find the best pizza!</p>
+                </div>
+                <div class="well" id="weird">
+                    <h2>#weirdtoppings</h2>
+                    <p>Only interested in non-traditional toppings? This is for you!</p>
+                </div>
             </div>
-            <div class="well" id="snobs">
-                <h2>#pizzasnobs</h2>
-                <p>Learn where to find the best of the best when it comes to pizza!</p>
+            <div class="row col-md-4 col-md-offset-2">
+                <div class="well" id="kid">
+                    <h2>#kidfriendly</h2>
+                    <p>Find all the places your kids will love, and hear about which ones to avoid.</p>
+                </div>
+                <div class="well" id="snobs">
+                    <h2>#pizzasnobs</h2>
+                    <p>Learn where to find the best of the best when it comes to pizza!</p>
+                </div>
             </div>
         </div>
     </div>
-
     <script>
         // link to #general chat page
         $('#general').click(function(){
@@ -75,7 +84,25 @@
         $('#snobs').click(function(){
             window.location.href = "snobs.html";
         });
-
+        
+        function showHidden() {
+            $('a').click(function() {
+                $('#stuffToHide').fadeOut();
+                $('#hiddenStuff').fadeIn();
+                $('#hiddenStuff').attr('id', 'stuffToHide');
+                $('#stuffToHide').attr('id', 'hiddenStuff');
+            });
+        }
+        function hideHidden() {
+            $('a').click(function() {
+                $('#hiddenStuff').fadeOut();
+                $('#stuffToHide').fadeIn();
+                $('#hiddenStuff').attr('id', 'stuffToHide');
+                $('#stuffToHide').attr('id', 'hiddenStuff');
+            });
+        }
+        showHidden();
+        setTimeout(hideHidden(), 10000);
     </script>
 </body>
 </html>
