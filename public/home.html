@@ -41,7 +41,7 @@
             </div>
         </div>
     </section>
-    <div class="stuffToHide">
+    <div id="stuffToHide">
         <!--template to build pizza places-->
         <div id="pizzeriahomeTemplate" style="display: none">
             <div class="col-md-12">
@@ -242,13 +242,33 @@
                 });
                 // $('input[type=checkbox]').removeAttr('checked');
                 // $('input[type=radio]').removeAttr('checked');
+                $('.newPizzaPlace').slideUp('slow', function() {
+
+                });
+                $('.pizzaCreate').slideDown('fast', function() {
+
+                });
             });
         });
-
-        $('a').click(function() {
-            $('.stuffToHide').fadeOut();
-            $('#hiddenStuff').fadeIn();
-        });
+        function showHidden() {
+            $('a').click(function() {
+                $('#stuffToHide').fadeOut();
+                $('#hiddenStuff').fadeIn();
+                $('#hiddenStuff').attr('id', 'stuffToHide');
+                $('#stuffToHide').attr('id', 'hiddenStuff');
+            });
+        }
+        function hideHidden() {
+            $('a').click(function() {
+                $('#hiddenStuff').fadeOut();
+                $('#stuffToHide').fadeIn();
+                $('#hiddenStuff').attr('id', 'stuffToHide');
+                $('#stuffToHide').attr('id', 'hiddenStuff');
+            });
+        }
+        showHidden();
+        setTimeout(hideHidden(), 10000);
+        
     </script>
 </body>
 </html>
