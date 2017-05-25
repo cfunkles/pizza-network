@@ -84,7 +84,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             getPizzerias();
-        });
+        })
 
         function upListener(pizzeria) {
             return function() {
@@ -93,17 +93,7 @@
                     getPizzerias();
                 });
             };
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         };
-=======
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
-        }
->>>>>>> origin/master
 
         function downListener(pizzeria) {
             return function() {
@@ -112,17 +102,7 @@
                     getPizzerias();
                 });
             };
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         };
-=======
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
-        }
->>>>>>> origin/master
 
         function getPizzerias () {
             $.ajax({
@@ -189,8 +169,8 @@
                 console.log(newYorkSort(data));
                 $
                 //put into template and populate
-            });
-        });
+            })
+        })
 
         function deepDishSort(data) {
             var deepDish = [];
@@ -206,8 +186,8 @@
             $.get('/api/getPizzerias', function(data) {
                 console.log(deepDishSort(data));
                 //put into template and populate
-            });
-        });
+            })
+        })
 
         function brickOvenSort(data) {
             var brickOven = [];
@@ -223,8 +203,8 @@
             $.get('/api/getPizzerias', function(data) {
                 console.log(brickOvenSort(data));
                 //put into template and populate
-            });
-        });
+            })
+        })
 
         function authenticSort(data) {
             var authentic = [];
@@ -240,8 +220,8 @@
             $.get('/api/getPizzerias', function(data) {
                 console.log(authenticSort(data));
                 //put into template and populate
-            });
-        });
+            })
+        })
 
         function deliverySort(data) {
             var delivery = [];
@@ -257,8 +237,8 @@
             $.get('/api/getPizzerias', function(data) {
                 console.log(deliverySort(data));
                 //put into template and populate
-            });
-        });
+            })
+        })
 
         function kidSort(data) {
             var kid = [];
@@ -274,8 +254,8 @@
             $.get('/api/getPizzerias', function(data) {
                 console.log(kidSort(data));
                 //put into template and populate
-            });
-        });
+            })
+        })
         // //write this to toggle details and select the specific button being clicked
         // $('.details').click(function() {
         //     $('.details').slideDown();
