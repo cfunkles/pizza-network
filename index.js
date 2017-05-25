@@ -32,6 +32,16 @@ app.use(expressSession({
 	saveUninitialized: true
 }));
 
+
+// authentication
+// app.get('/api/authenication', function(req, res){
+// 	console.log(req.session._id);
+// 	if(!req.session._id){
+// 		res.send("error");
+// 	}
+
+// });
+
 // Register a new user
 app.post('/api/register', function(req, res){
 	// Check to see if username already exists
@@ -91,7 +101,6 @@ app.post('/api/newPlace', function(req, res){
 	if(!req.session.user){
 		res.status(403);
 		res.send('forbidden');
-		return;
 	}
 	// If so, add new pizza place
 	db.collection('places').insertOne({
@@ -143,26 +152,6 @@ app.post('/api/downvote', function(req, res) {
 	});	
 });
 
-// Top Ten List
-app.get('/api/topTen', function(req, res){
-	//a possible solution to the Top Ten List
-	db.collection('places').find({}).toArray(function(err, docs){
-		if(err){
-			return console.log(err);
-		}
-		var totalVotes = [];
-		for(var i = 0; i < docs.length; i++){
-			var diff = docs[i].upVotes - docs[i].downVotes;
-			totalVotes.push([docs[i]._id, diff]);
-		}
-		totalVotes.sort(function(a, b){
-			return b[1] - a[1];
-		});
-		res.send(totalVotes.splice(10));
-		console.log(totalVotes.splice(10));
-	});
-});
-
 // List all pizza places
 app.get('/api/getPizzerias', function(req, res) {
 	db.collection('places').find({}).toArray(function(err, docs) {
@@ -176,9 +165,6 @@ app.get('/api/getPizzerias', function(req, res) {
 		res.send(docs);
 	});
 });
-
-// Filter pizza places
-
 
 // Chats
 app.post('/api/newChats', function(req, res){
@@ -215,17 +201,6 @@ app.get('/api/getChats', function(req, res){
 		res.send(docs);
 	});
 });
-
-
-
-
-
-
-
-
-
-
-
 
 //Files to be served out of static public folder
 app.use(express.static('public'));

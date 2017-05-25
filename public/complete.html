@@ -96,7 +96,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             getPizzerias();
-        })
+        });
 
         function upListener(pizzeria) {
             return function() {
@@ -105,7 +105,7 @@
                     getPizzerias();
                 });
             };
-        };
+        }
 
         function downListener(pizzeria) {
             return function() {
@@ -114,7 +114,7 @@
                     getPizzerias();
                 });
             };
-        };
+        }
         
         function template(response) {
             $('#output').empty();
@@ -163,16 +163,16 @@
             }
             popular.sort(function(a, b) {
                 return b.score - a.score;
-            })
+            });
             template(popular);
-        };
+        }
         
 
         $('#popular').click(function() {
             $.get('api/getPizzerias', function(data) {
                 popularSort(data);
-            })
-        })
+            });
+        });
 
         function newYorkSort(data) {
             var newYork = [];
@@ -187,8 +187,8 @@
         $('#new-york').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 newYorkSort(data);
-            })
-        })
+            });
+        });
 
         function deepDishSort(data) {
             var deepDish = [];
@@ -203,8 +203,8 @@
         $('#chicago').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 deepDishSort(data);
-            })
-        })
+            });
+        });
 
         function brickOvenSort(data) {
             var brickOven = [];
@@ -213,14 +213,14 @@
                     brickOven.push(data[i]);
                 }
             }
-            template(brickOven)
+            template(brickOven);
         }
 
         $('#brick-oven').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 brickOvenSort(data);
-            })
-        })
+            });
+        });
 
         function authenticSort(data) {
             var authentic = [];
@@ -235,8 +235,8 @@
         $('#authentic').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 authenticSort(data);
-            })
-        })
+            });
+        });
 
         function deliverySort(data) {
             var delivery = [];
@@ -251,8 +251,8 @@
         $('#delivery').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 deliverySort(data);
-            })
-        })
+            });
+        });
 
         function kidSort(data) {
             var kid = [];
@@ -267,8 +267,8 @@
         $('#kid-friendly').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 kidSort(data);
-            })
-        })
+            });
+        });
         // //write this to toggle details and select the specific button being clicked
         // $('.details').click(function() {
         //     $('.details').slideDown();
