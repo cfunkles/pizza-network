@@ -3,6 +3,11 @@
 	height: 1.5em
 }
 
+.navbar {
+	font-family: "Lucida Sans Unicode";
+	letter-spacing: .12em;
+}
+
 #list_title {
 	margin-top: 60px
 }
@@ -13,6 +18,9 @@ body{
 
 #site-name {
 	color: white;
+	font-family: "Lucida Grande";
+	word-spacing: 0.2em;
+	letter-spacing: .12em;
 }
 
 p img {
@@ -30,11 +38,14 @@ p img {
 	background-color: orange;
 }
 
-footer {
-	background-color: black;
-
-	bottom: 0;
-	display: block;
+footer p {
+	background-color: #222;
+	padding: 20px;
+	color: lightgrey;
+	margin: 0;
+	font-family: "Lucida Grande";
+	word-spacing: 0.2em;
+	letter-spacing: .19em;
 }
 
 aside {
