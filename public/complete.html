@@ -136,6 +136,7 @@
                 pizzaDiv.find('.address').text(response[i].address + " " + response[i].city + ", " +response[i].state);
                 pizzaDiv.find('.pizzaCity').text(response[i].city);
                 pizzaDiv.find('.pizzaState').text(response[i].state);
+                pizzaDiv.find('.pizzaZip').text(response[i].zip);
                 pizzaDiv.find('.pizzaURL').attr('href', response[i].url);
                 pizzaDiv.find('.pizzaURL').text(response[i].url);
                 //consider different output format for these booleans

@@ -32,12 +32,6 @@ body {
 	margin-top: 60px
 }
 
-
-
-
-
-
-
 p img {
 	width: 2em;
 	height: 2em;
@@ -77,6 +71,10 @@ footer p {
 	letter-spacing: .19em;
 	position: absolute;
 	left: 35%;
+}
+
+.pizzaDetails {
+	border: 1px black solid;
 }
 
 .create-form {

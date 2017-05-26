@@ -46,17 +46,34 @@
         <div id="stuffToHide">
             <!--template to build pizza places-->
             <div id="pizzeriahomeTemplate" style="display: none">
-                <div class="pizzeriahome row well">
-                    <!-- pizzeria name get hypertext to their profile -->
-                    <span class="col-md-8"><h3 class="pizzaName"></h3></span>
-                    <span class="col-md-2"><button class="btn btn-info upper">Up Slice<p class="upVotes"></p></button></span>
-                    <span class="col-md-2"><button class="btn btn-info downer">Down Slice<p class="downVotes"></p></button></span>
-                    <div class="address row" style="display: inline"></div>
+                <div class="pizzeriahome well">
                     <div class="row">
-                        <span class="col-md-2"><p class="pizzaTel"></p></span>
-                        <span class="col-md-3"><a href="" class="pizzaURL" target="_blank"></a></span></div>
+                        <!-- pizzeria name get hypertext to their profile -->
+                        <span class="col-md-8">
+                            <h3 class="pizzaName"></h3>
+                        </span>
+                        <span class="col-md-2">
+                            <button class="btn btn-info upper">Up Slice
+                                <p class="upVotes"></p>
+                            </button>
+                        </span>
+                        <span class="col-md-2">
+                            <button class="btn btn-info downer">Down Slice
+                                <p class="downVotes"></p>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="row center">
+                        <div class="address col-md-3"></div>
+                        <span class="col-md-2">
+                            <p class="pizzaTel"></p>
+                        </span>
+                        <span class="col-md-3">
+                            <a href="" class="pizzaURL" target="_blank"></a>
+                        </span>
+                    </div>
                     <!-- alter output to soimething boolean friendly -->
-                    <div class="row" style="display: inline">
+                    <div class="row pizzaDetails center">
                         <span class="col-md-2">New York: <p class="pizzaNY"></p></span>
                         <span class="col-md-2">Deep Dish: <p class="pizzaDD"></p></span>
                         <span class="col-md-2">Brick Oven: <p class="pizzaBO"></p></span>
@@ -87,6 +104,7 @@
                         Address: <input type="text" id="newPizzaAdd" class="form-control">
                         City: <input type="text" id="newPizzaCity" class="form-control">
                         State: <input type="text" id="newPizzaState" class="form-control">
+                        Zip: <input type="text" id="newPizzaZip" class="form-control"> 
                         <!-- fix the radio buttons so that they unselect -->
         				<h4>Pizza Styles:</h4>
                         <div class="pizzaStyles">
@@ -143,6 +161,7 @@
                 pizzaDiv.find('.address').text(response[i].address + " " + response[i].city + ", " +response[i].state);
                 pizzaDiv.find('.pizzaCity').text(response[i].city);
                 pizzaDiv.find('.pizzaState').text(response[i].state);
+                pizzaDiv.find('.pizzaZip').text(response[i].zip);
                 pizzaDiv.find('.pizzaURL').attr('href', response[i].url);
                 pizzaDiv.find('.pizzaURL').text(response[i].url);
                 //consider different output format for these booleans
@@ -227,6 +246,7 @@
                 address: $('#newPizzaAdd').val(),
                 city: $('#newPizzaCity').val(),
                 state: $('#newPizzaState').val(),
+                zip: $('#newPizzaZip').val(),
                 phone: $('#newPizzaTel').val(),
                 url: $('#newPizzaSite').val(),
                 newYork: $('input[name=newYork]:checked').val(),
@@ -243,6 +263,7 @@
                 $('#newPizzaAdd').val('');
                 $('#newPizzaCity').val('');
                 $('#newPizzaState').val('');
+                $('#newPizzaZip').val(''),
                 $('#newPizzaTel').val('');
                 $('#newPizzaSite').val('');
                 //the following two may not be correct

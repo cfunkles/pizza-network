@@ -105,6 +105,7 @@ app.post('/api/newPlace', function(req, res){
 		address: req.body.address,
 		city: req.body.city,
 		state: req.body.state,
+		zip: req.body.zip,
 		phone: req.body.phone,
 		url: req.body.url,
 		newYork: req.body.newYork,
