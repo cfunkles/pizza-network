@@ -35,7 +35,6 @@ app.use(expressSession({
 
 // authentication
 app.get('/api/authentication', function(req, res){
-	console.log("Req.session: " + req.session.user);
 	if(!req.session.user){
 		res.send("error");
 	}
