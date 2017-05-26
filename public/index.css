@@ -78,14 +78,21 @@ footer p {
 	letter-spacing: 0.1em;
 }
 
+.pizzeria h3 {
+	font-weight: 300;
+	text-decoration: underline; 
+	color: #6f1010;
+}
+
 hr {
 	border-top: 1px solid #0c4e6f;
 	margin: 10px;
 
 }
 
-.pizzaDetails {
-	
+.pizzaDetails span {
+	border-right: 1px solid #0c4e6f;
+	border-left: 1px solid #0c4e6f;
 }
 
 .create-form {
