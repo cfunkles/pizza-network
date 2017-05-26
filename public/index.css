@@ -3,26 +3,9 @@
 	height: 1.5em
 }
 
-.info img {
-	width: 5em;
-	height: 6em
-}
-
 .navbar {
 	font-family: "Lucida Sans Unicode";
 	letter-spacing: .12em;
-}
-
-#list_title {
-	margin-top: 60px
-}
-
-.innerBody {
-	background-color: firebrick;
-}
-
-body {
-	background-color: #222;
 }
 
 #site-name {
@@ -31,6 +14,29 @@ body {
 	word-spacing: 0.2em;
 	letter-spacing: .12em;
 }
+
+body {
+	background-color: #222;
+}
+
+.innerBody {
+	background-color: firebrick;
+}
+
+.info img {
+	width: 5em;
+	height: 6em
+}
+
+#list_title {
+	margin-top: 60px
+}
+
+
+
+
+
+
 
 p img {
 	width: 2em;
@@ -71,6 +77,10 @@ footer p {
 	letter-spacing: .19em;
 	position: absolute;
 	left: 35%;
+}
+
+.create-form {
+	width: 65%;
 }
 
 aside {

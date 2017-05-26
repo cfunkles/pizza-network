@@ -46,25 +46,23 @@
         <div id="stuffToHide">
             <!--template to build pizza places-->
             <div id="pizzeriahomeTemplate" style="display: none">
-                <div class="col-md-12">
-                    <div class="pizzeriahome row well">
-                        <!-- pizzeria name get hypertext to their profile -->
-                        <span class="col-md-8"><h3 class="pizzaName"></h3></span>
-                        <span class="col-md-2"><button class="btn btn-info upper">Up Slice<p class="upVotes"></p></button></span>
-                        <span class="col-md-2"><button class="btn btn-info downer">Down Slice<p class="downVotes"></p></button></span>
-                        <div class="address row" style="display: inline"></div>
-                        <div class="row">
-                            <span class="col-md-2"><p class="pizzaTel"></p></span>
-                            <span class="col-md-3"><a href="" class="pizzaURL" target="_blank"></a></span></div>
-                        <!-- alter output to soimething boolean friendly -->
-                        <div class="row" style="display: inline">
-                            <span class="col-md-2">New York: <p class="pizzaNY"></p></span>
-                            <span class="col-md-2">Deep Dish: <p class="pizzaDD"></p></span>
-                            <span class="col-md-2">Brick Oven: <p class="pizzaBO"></p></span>
-                            <span class="col-md-2">Authentic: <p class="pizzaAU"></p></span>
-                            <span class="col-md-2">Delivers: <p class="pizzaDel"></p></span>
-                            <span class="col-md-2">Kid Friendly: <p class="pizzaKids"></p></span>
-                        </div>
+                <div class="pizzeriahome row well">
+                    <!-- pizzeria name get hypertext to their profile -->
+                    <span class="col-md-8"><h3 class="pizzaName"></h3></span>
+                    <span class="col-md-2"><button class="btn btn-info upper">Up Slice<p class="upVotes"></p></button></span>
+                    <span class="col-md-2"><button class="btn btn-info downer">Down Slice<p class="downVotes"></p></button></span>
+                    <div class="address row" style="display: inline"></div>
+                    <div class="row">
+                        <span class="col-md-2"><p class="pizzaTel"></p></span>
+                        <span class="col-md-3"><a href="" class="pizzaURL" target="_blank"></a></span></div>
+                    <!-- alter output to soimething boolean friendly -->
+                    <div class="row" style="display: inline">
+                        <span class="col-md-2">New York: <p class="pizzaNY"></p></span>
+                        <span class="col-md-2">Deep Dish: <p class="pizzaDD"></p></span>
+                        <span class="col-md-2">Brick Oven: <p class="pizzaBO"></p></span>
+                        <span class="col-md-2">Authentic: <p class="pizzaAU"></p></span>
+                        <span class="col-md-2">Delivers: <p class="pizzaDel"></p></span>
+                        <span class="col-md-2">Kid Friendly: <p class="pizzaKids"></p></span>
                     </div>
                 </div>
             </div>
@@ -75,9 +73,9 @@
                 <div id="outputhome"></div>
             </div>
 
-            <div class="container well">
+            <div class="container well create-form">
                 <div class="row pizzaCreate">
-                    <p class="col-md-4 col-md-offset-3">Do you have a pizzeria that you'd like to add to the list?</p>
+                    <p class="col-md-5 col-md-offset-2">Do you have a pizzeria that you'd like to add to the list?</p>
                     <button class="btn btn-primary col-md-2 newPizzaCreate">Click To Add</button>
                 </div>
         		<div class="row newPizzaPlace" style="display: none">
@@ -117,6 +115,7 @@
         			</div>
         		</div>
         	</div>
+            <br>
         </div>
         <footer class="center">
             <p>The Pizza Network &copy; 2017 Casey, Chuck, David</p>
@@ -136,7 +135,7 @@
         function template(response) {
             $('#outputhome').empty();
             for (var i = 0; i < response.length; i++) {
-                var pizzaDiv = $('#pizzeriahomeTemplate').children().first().clone();
+                var pizzaDiv = $('#pizzeriahomeTemplate').children().clone();
                 pizzaDiv.find('.pizzaName').text(response[i].name);
                 //format for phone numbers
                 pizzaDiv.find('.pizzaTel').text(response[i].phone);
@@ -264,7 +263,6 @@
             $('.info-button').click(function() {
                 $('#stuffToHide').fadeOut();
                 $('#hiddenStuff').fadeIn();
-                //$('footer').css({position: 'fixed'});
             });
         }
         function hideHidden() {
