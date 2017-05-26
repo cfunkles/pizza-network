@@ -154,7 +154,7 @@
         
         // Template function for cloning pizza divs
         function template(response) {
-            $('#outputhome').empty();
+            $('#output').empty();
             for (var i = 0; i < response.length; i++) {
                 var pizzaDiv = $('#pizzeriahomeTemplate').children().clone();
                 pizzaDiv.find('.pizzaName').text(response[i].name);
