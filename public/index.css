@@ -91,19 +91,17 @@ hr {
 
 }
 
-<<<<<<< HEAD
-/*
-=======
+
 .list_title {
 	font-family: "Lucida Sans Unicode";
 }
 
->>>>>>> origin/master
+
 .pizzaDetails span {
 	border-right: 1px solid #0c4e6f;
 	border-left: 1px solid #0c4e6f;
 }
-*/
+
 
 .create-form {
 	width: 65%;
