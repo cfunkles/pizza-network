@@ -46,7 +46,7 @@
         <div id="stuffToHide">
             <!--template to build pizza places-->
             <div id="pizzeriahomeTemplate" style="display: none">
-                <div class="well">
+                <div class="well pizzeria">
                     <div class="row">
                         <!-- pizzeria name get hypertext to their profile -->
                         <span class="col-md-8">
@@ -63,6 +63,7 @@
                             </button>
                         </span>
                     </div>
+                    <hr>
                     <div class="row center">
                         <div class="address col-md-3"></div>
                         <span class="col-md-2">
@@ -72,6 +73,7 @@
                             <a href="" class="pizzaURL" target="_blank"></a>
                         </span>
                     </div>
+                    <hr>
                     <!-- alter output to soimething boolean friendly -->
                     <div class="row pizzaDetails center">
                         <span class="col-md-2">New York: <p class="pizzaNY"></p></span>
@@ -87,7 +89,7 @@
             <!--output for the topten-->
             <div class="container">
                 <h2 class="list_title">Top Ten Pizzerias</h2>
-                <div id="outputhome"></div>
+                <div id="output"></div>
             </div>
 
             <div class="container well create-form">
@@ -172,7 +174,7 @@
                 pizzaDiv.find('.upper').click(upListener(response[i]));
                 pizzaDiv.find('.downVotes').text(response[i].downVotes);
                 pizzaDiv.find('.downer').click(downListener(response[i]));
-                $('#outputhome').append(pizzaDiv);
+                $('#output').append(pizzaDiv);
             }
         }
 

@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="pizzeriaTemplate" style="display: none">
-        <div class="well">
+        <div class="well pizzeria">
             <div class="row">
                 <!-- pizzeria name get hypertext to their profile -->
                 <span class="col-md-8">
@@ -31,6 +31,7 @@
                     </button>
                 </span>
             </div>
+            <hr>
             <div class="row center">
                 <div class="address col-md-3"></div>
                 <span class="col-md-2">
@@ -40,6 +41,7 @@
                     <a href="" class="pizzaURL" target="_blank"></a>
                 </span>
             </div>
+            <hr>
             <!-- alter output to something boolean friendly -->
             <div class="row pizzaDetails center">
                 <span class="col-md-2">New York: <p class="pizzaNY"></p></span>
@@ -96,8 +98,8 @@
                     </div>
                 </aside>
                 <!--The lists page, template ideas for what jquery builds-->
-                <div class="col-md-9">
-                    <h2>All pizza places</h2>
+                <div class="col-md-7">
+                    <h2 id="list-title">Complete Pizzeria list</h2>
                     <!--change this title for which filter is being used-->
                     <div id="output"></div>
                 </div>
@@ -163,6 +165,11 @@
         }
 
         // Functions and click listeners for all filters
+
+        function changeTitle(title) {
+            $('#list-title').text(title);
+        }
+
         function getPizzerias () {
             $.ajax({
                 method: 'GET',
@@ -192,6 +199,7 @@
         $('#popular').click(function() {
             $.get('api/getPizzerias', function(data) {
                 popularSort(data);
+                changeTitle('Voted Best');
             });
         });
 
@@ -210,6 +218,7 @@
         $('#new-york').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 newYorkSort(data);
+                changeTitle('New York Style');
             });
         });
 
@@ -228,6 +237,7 @@
         $('#chicago').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 deepDishSort(data);
+                changeTitle('Deep Dish Style');
             });
         });
 
@@ -246,6 +256,7 @@
         $('#brick-oven').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 brickOvenSort(data);
+                changeTitle('Brick Oven Style');
             });
         });
 
@@ -264,6 +275,7 @@
         $('#authentic').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 authenticSort(data);
+                changeTitle('Authentic Style');
             });
         });
 
@@ -282,6 +294,7 @@
         $('#delivery').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 deliverySort(data);
+                changeTitle('Delivers');
             });
         });
 
@@ -300,6 +313,7 @@
         $('#kid-friendly').click(function() {
             $.get('/api/getPizzerias', function(data) {
                 kidSort(data);
+                changeTitle('Good for the Kids');
             });
         });
         // //write this to toggle details and select the specific button being clicked
