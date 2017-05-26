@@ -3,6 +3,11 @@
 	height: 1.5em
 }
 
+.info img {
+	width: 5em;
+	height: 6em
+}
+
 .navbar {
 	font-family: "Lucida Sans Unicode";
 	letter-spacing: .12em;
@@ -32,14 +37,28 @@ p img {
 	height: 2em;
 }
 
-.info {
-	background-color: #a8b9ff;
-	color: white;
-	padding: 15px;
+.login-form {
+	background-color: orange;
+	margin-top: 60px;
+	margin-bottom: 10px;
+	padding: 10px;
+	width: 50%;
+	font-family: "Lucida Grande";
+	font-size: 15px;
+
 }
 
-.login-info {
-	background-color: orange;
+.login-input {
+	margin: 10px;
+}
+
+.info {
+	background-color: #222;
+	color: white;
+	padding: 15px;
+	font-family: "Lucida Grande";
+	font-size: 20px;
+	letter-spacing: .1em
 }
 
 footer p {
@@ -50,6 +69,8 @@ footer p {
 	font-family: "Lucida Grande";
 	word-spacing: 0.2em;
 	letter-spacing: .19em;
+	position: absolute;
+	left: 35%;
 }
 
 aside {

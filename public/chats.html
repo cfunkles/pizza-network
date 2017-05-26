@@ -105,16 +105,20 @@
             $('.info-button').click(function() {
                 $('#stuffToHide').fadeOut();
                 $('#hiddenStuff').fadeIn();
+                $('.innerBody').css({height: 'calc(100vh - 60px'});
             });
         }
         function hideHidden() {
             $('.clearHidden').click(function() {
                 $('#hiddenStuff').fadeOut();
                 $('#stuffToHide').fadeIn();
+                $('.innerBody').css({height: 'calc(100vh - 120px'});
             });
         }
         showHidden();
         hideHidden();
+        $('.innerBody').css({height: 'calc(100vh - 120px'});
+        $('footer p').css({top: 'calc(100vh - 60px)'});
     </script>
 </body>
 </html>
