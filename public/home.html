@@ -140,7 +140,7 @@
         </footer>
     </div>
     <script>
-        // check for authentication and call popular sort
+        // Check for authentication and call popular sort
         $(document).ready(function() {
             $.get('/api/authentication', function(data){
                 if(data === "error"){
@@ -150,6 +150,7 @@
             popularSort();
         });
         
+        // Template function for cloning pizza divs
         function template(response) {
             $('#outputhome').empty();
             for (var i = 0; i < response.length; i++) {
@@ -175,6 +176,7 @@
             }
         }
 
+        // Get pizzas and sort by popularity. Show only ten
         function popularSort(data) {
             $.ajax({
                 method: 'GET',
@@ -196,46 +198,42 @@
             });
         }
 
+        // Click listener for up voting pizza places
         function upListener(pizzeria) {
             return function() {
                 $.post('/api/upvote', {_id: pizzeria._id}, function(data) {
-                    console.log(data);
                     popularSort();
                 });
             };
         }
 
+        // Click listener for down voting pizza places
         function downListener(pizzeria) {
             return function() {
                 $.post('/api/downvote', {_id: pizzeria._id}, function(data) {
-                    console.log(data);
                     popularSort();
                 });
             };
         }
 
+        // Click listener for showing more pizza details. Currently not in use.
         function detailsListener(pizzeria) {
-            console.log('blahhh');
             return function() {
-                console.log('blahhh');
                 pizzaDiv.find('.details').slideDown('slow', function() {
                     getPizzerias();
-                    console.log('blahh');
                 }); 
             };
         }
 
-
-        
-        //profile creation
+        // Pizza profile creation
         $('.newPizzaCreate').click(function() {
             $('.pizzaCreate').slideUp('fast', function() {
                 $('.newPizzaPlace').slideDown('slow', function() {
-
                 });
             });
         }); 
 
+        // Post a new pizza place
         $('#newPizzaSubmit').click(function() {
             $.post('/api/newPlace', {
                 name: $('#newPizzaName').val(),
@@ -254,7 +252,7 @@
                 upVotes: 0,
                 downVotes: 0,
                 score: 0
-            }, function () {
+            }, function () { // clear the form after it is submitted
                 $('#newPizzaName').val('');
                 $('#newPizzaAdd').val('');
                 $('#newPizzaCity').val('');
@@ -262,26 +260,24 @@
                 $('#newPizzaZip').val('');
                 $('#newPizzaTel').val('');
                 $('#newPizzaSite').val('');
-                //the following two may not be correct
+                // Rest radio buttons
                 $('input[type=radio]').prop('checked', function () {
                     return this.getAttribute('checked') === 'checked';
                 });
-                // $('input[type=checkbox]').removeAttr('checked');
-                // $('input[type=radio]').removeAttr('checked');
                 $('.newPizzaPlace').slideUp('slow', function() {
-
                 });
                 $('.pizzaCreate').slideDown('fast', function() {
-
                 });
             });
         });
+
         function showHidden() {
             $('.info-button').click(function() {
                 $('#stuffToHide').fadeOut();
                 $('#hiddenStuff').fadeIn();
             });
         }
+
         function hideHidden() {
             $('.clearHidden').click(function() {
                 $('#hiddenStuff').fadeOut();

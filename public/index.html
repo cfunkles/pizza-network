@@ -44,16 +44,15 @@
         </footer>
     </div>
     <script>
+        // Post to login
         $('#login').click(function() {
             $.post('/api/login', {
                 username: $('#username').val(),
                 password: $('#password').val()
             }, function(res) {
-                console.log(res);
                 if (res === "error") {
                     $('#login-error').text('Error: Username or password incorrect or you need to register first');
                 } else {
-                    console.log(res);
                     $('#username').val('');
                     $("#password").val('');
                     window.location.href = "home.html";
@@ -61,6 +60,7 @@
             });
         });
 
+        // Post to register
          $('#register').click(function() {
             $.post('/api/register', {
                 username: $('#username').val(),
@@ -74,6 +74,7 @@
             });
         });
 
+        // Styling for footer
         $('.innerBody').css({height: 'calc(100vh - 60px'});
         $('footer p').css({top: 'calc(100vh - 60px)'});
     </script>

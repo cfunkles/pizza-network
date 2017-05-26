@@ -33,7 +33,7 @@ app.use(expressSession({
 }));
 
 
-// authentication
+// Authentication
 app.get('/api/authentication', function(req, res){
 	if(!req.session.user){
 		res.send("error");
@@ -66,7 +66,6 @@ app.post('/api/register', function(req, res){
 				return;
 			}
 			res.send(data);
-
 		});
 	});
 });
@@ -92,7 +91,6 @@ app.post('/api/login', function(req, res){
 
 
 //Create new pizza place
-
 app.post('/api/newPlace', function(req, res){
 	// Check if user is logged in
 	if(!req.session.user){
@@ -129,7 +127,7 @@ app.post('/api/newPlace', function(req, res){
 	});
 });
 
-// Up and Down Vote Handlers
+// Up Vote Handler
 app.post('/api/upvote', function(req, res) {
 	db.collection('places').update({_id: ObjectID(req.body._id)}, {$inc: {upVotes: 1, score: 1}}, function(err, result) {
 		if (err) {
@@ -139,6 +137,7 @@ app.post('/api/upvote', function(req, res) {
 	});
 });
 
+// Down Vote Handler
 app.post('/api/downvote', function(req, res) {
 	db.collection('places').update({_id: ObjectID(req.body._id)}, {$inc: {downVotes: -1, score: -1}}, function(err, result) {
 		if (err) {
@@ -148,7 +147,7 @@ app.post('/api/downvote', function(req, res) {
 	});	
 });
 
-// List all pizza places
+// Get request for all pizza places
 app.get('/api/getPizzerias', function(req, res) {
 	db.collection('places').find({}).toArray(function(err, docs) {
 		if(err){
@@ -163,13 +162,13 @@ app.get('/api/getPizzerias', function(req, res) {
 
 // Chats
 app.post('/api/newChats', function(req, res){
-	// check to see if user is logged in
+	// Check to see if user is logged in
 	if(!req.session.user){
 		res.status(403);
 		res.send('forbidden');
 		return;
 	}
-
+	// Insert chat
 	db.collection('chats').insertOne({
 		timestamp: Date.now(),
 		message: req.body.message,
@@ -182,13 +181,13 @@ app.post('/api/newChats', function(req, res){
 });
 
 app.get('/api/getChats', function(req, res){
-	//check to ee if user is logged in
+	// Check to see if user is logged in
 	if(!req.session.user){
 		res.status(403);
 		res.send('forbidden');
 		return;
 	}
-
+	// Find all chats
 	db.collection('chats').find({}).toArray(function(err, docs){
 		if(err){
 			return console.log(err);
@@ -197,16 +196,16 @@ app.get('/api/getChats', function(req, res){
 	});
 });
 
-//Files to be served out of static public folder
+// Files to be served out of static public folder
 app.use(express.static('public'));
 
-//404 boilerplate
+// 404 boilerplate
 app.use(function(req, res, next) {
 	res.status(404);
 	res.send("File Not Found! No pizza in sight!");
 });
 
-//500 boilerplate
+// 500 boilerplate
 app.use(function(err, req, res, next) {
 	console.log(err);
 	res.status(500);
@@ -215,7 +214,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-//start listening after we've connected to the db
+// Start listening after we've connected to the db
 function startListening() {
 	app.listen(8080, function() {
 		console.log("Sever started at http://localhost:8080 Grab a slice!");

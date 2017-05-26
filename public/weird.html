@@ -67,7 +67,7 @@
 		</footer>
 	</div>
 	<script>
-	// check for authentication
+		// Check for authentication
 		$(document).ready(function() {
 			$.get('/api/authentication', function(data){
 				if(data === "error"){
@@ -76,6 +76,7 @@
 			});
 		});
 
+		// Function to get chats from db and then a call to display chats
 		function getChats(){
 			$.get('/api/getChats', function(res){
 				var chats = res;
@@ -83,6 +84,7 @@
 			});
 		}
 
+		// Function to send a new chat to db
 		function sendChat(){
 			var newChat = $('#newChat').val();
 			$('#newChat').val("");
@@ -91,23 +93,24 @@
 				type: "weird"
 			}, function(res){
 				if(res === "success"){
-				getChats();
-			}
+					getChats();
+				}
 			});
 		}
 
+		// Function to display chats by clearing the chatsOutput div and repopulating
 		function displayChats(chats){
 			$('#chatsOutput').empty();
-				var weirdChats = [];
-				for(var j = 0; j < chats.length; j++){
-					if(chats[j].type === "weird"){
-						weirdChats.push(chats[j]);
-					}
-				}
-				for(var i = 0; i < weirdChats.length; i++){
-					$('#chatsOutput').prepend("<p><strong>" + weirdChats[i].username + ": </strong>" + weirdChats[i].message + "</p>");
+			var weirdChats = [];
+			for(var j = 0; j < chats.length; j++){
+				if(chats[j].type === "weird"){
+					weirdChats.push(chats[j]);
 				}
 			}
+			for(var i = 0; i < weirdChats.length; i++){
+				$('#chatsOutput').prepend("<p><strong>" + weirdChats[i].username + ": </strong>" + weirdChats[i].message + "</p>");
+			}
+		}
 
 		$('#sendChat').click(sendChat);
 
@@ -118,22 +121,23 @@
 		});
 
 		getChats();
+
 		function showHidden() {
-            $('.info-button').click(function() {
-                $('#stuffToHide').fadeOut();
-                $('#hiddenStuff').fadeIn();
-            });
-        }
-        function hideHidden() {
-            $('.clearHidden').click(function() {
-                $('#hiddenStuff').fadeOut();
-                $('#stuffToHide').fadeIn();
-            });
-        }
-        showHidden();
-        hideHidden();
-        $('.innerBody').css({height: 'calc(100vh - 60px'});
-        $('footer p').css({top: 'calc(100vh - 60px)'});
+			$('.info-button').click(function() {
+				$('#stuffToHide').fadeOut();
+				$('#hiddenStuff').fadeIn();
+			});
+		}
+		function hideHidden() {
+			$('.clearHidden').click(function() {
+				$('#hiddenStuff').fadeOut();
+				$('#stuffToHide').fadeIn();
+			});
+		}
+		showHidden();
+		hideHidden();
+		$('.innerBody').css({height: 'calc(100vh - 60px'});
+		$('footer p').css({top: 'calc(100vh - 60px)'});
 	</script>
 
 </body>
