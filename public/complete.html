@@ -13,6 +13,44 @@
     <title>*Complete Pizzeria List*</title>
 </head>
 <body>
+    <div id="pizzeriaTemplate" style="display: none">
+        <div class="well">
+            <div class="row">
+                <!-- pizzeria name get hypertext to their profile -->
+                <span class="col-md-8">
+                    <h3 class="pizzaName"></h3>
+                </span>
+                <span class="col-md-2">
+                    <button class="btn btn-info upper">Up Slice
+                        <p class="upVotes"></p>
+                    </button>
+                </span>
+                <span class="col-md-2">
+                    <button class="btn btn-info downer">Down Slice
+                        <p class="downVotes"></p>
+                    </button>
+                </span>
+            </div>
+            <div class="row center">
+                <div class="address col-md-3"></div>
+                <span class="col-md-2">
+                    <p class="pizzaTel"></p>
+                </span>
+                <span class="col-md-3">
+                    <a href="" class="pizzaURL" target="_blank"></a>
+                </span>
+            </div>
+            <!-- alter output to something boolean friendly -->
+            <div class="row pizzaDetails center">
+                <span class="col-md-2">New York: <p class="pizzaNY"></p></span>
+                <span class="col-md-2">Deep Dish: <p class="pizzaDD"></p></span>
+                <span class="col-md-2">Brick Oven: <p class="pizzaBO"></p></span>
+                <span class="col-md-2">Authentic: <p class="pizzaAU"></p></span>
+                <span class="col-md-2">Delivers: <p class="pizzaDel"></p></span>
+                <span class="col-md-2">Kid Friendly: <p class="pizzaKids"></p></span>
+            </div>
+        </div>
+    </div>
     <div class="innerBody">
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
@@ -61,34 +99,7 @@
                 <div class="col-md-9">
                     <h2>All pizza places</h2>
                     <!--change this title for which filter is being used-->
-                     <div class="container">
-                        <div class="pizzerias">
-                            <div id="output"></div>
-                        </div>
-                    </div>
-                    <div id="pizzeriaTemplate" style="display: none">
-                        <div class="col-md-8">
-                            <div class="pizzeria row well">
-                                <!-- pizzeria name get hypertext to their profile -->
-                                <span class="col-md-8"><h3 class="pizzaName"></h3></span>
-                                <span class="col-md-2"><button class="btn btn-info upper">Up Slice<p class="upVotes"></p></button></span>
-    		            		<span class="col-md-2"><button class="btn btn-info downer">Down Slice<p class="downVotes"></p></button></span>
-                                <div class="address row" style="display: inline"></div>
-                                <div class="row">
-                                    <span class="col-md-2"><p class="pizzaTel"></p></span>
-                                    <span class="col-md-3"><a href="" class="pizzaURL" target="_blank"></a></span></div>
-                                <!-- alter output to something boolean friendly -->
-                                <div class="row" style="display: inline">
-                                    <span class="col-md-2">New York: <p class="pizzaNY"></p></span>
-                                    <span class="col-md-2">Deep Dish: <p class="pizzaDD"></p></span>
-                                    <span class="col-md-2">Brick Oven: <p class="pizzaBO"></p></span>
-                                    <span class="col-md-2">Authentic: <p class="pizzaAU"></p></span>
-                                    <span class="col-md-2">Delivers: <p class="pizzaDel"></p></span>
-                                    <span class="col-md-2">Kid Friendly: <p class="pizzaKids"></p></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="output"></div>
                 </div>
             </div>   
         </div>
@@ -128,15 +139,11 @@
         function template(response) {
             $('#output').empty();
             for (var i = 0; i < response.length; i++) {
-                var pizzaDiv = $('#pizzeriaTemplate').children().first().clone();
+                var pizzaDiv = $('#pizzeriaTemplate').children().clone();
                 pizzaDiv.find('.pizzaName').text(response[i].name);
                 //format for phone numbers
                 pizzaDiv.find('.pizzaTel').text(response[i].phone);
-                pizzaDiv.find('.pizzaAdd').text(response[i].address);
-                pizzaDiv.find('.address').text(response[i].address + " " + response[i].city + ", " +response[i].state);
-                pizzaDiv.find('.pizzaCity').text(response[i].city);
-                pizzaDiv.find('.pizzaState').text(response[i].state);
-                pizzaDiv.find('.pizzaZip').text(response[i].zip);
+                pizzaDiv.find('.address').text(response[i].address + "\n" + response[i].city + ", " +response[i].state + ' ' + response[i].zip);
                 pizzaDiv.find('.pizzaURL').attr('href', response[i].url);
                 pizzaDiv.find('.pizzaURL').text(response[i].url);
                 //consider different output format for these booleans
