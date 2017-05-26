@@ -90,6 +90,8 @@ hr {
 
 .create-form {
 	width: 65%;
+	font-family: "Lucida Sans Unicode";
+	letter-spacing: 0.1em;
 }
 
 aside {
