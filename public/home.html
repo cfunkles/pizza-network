@@ -13,113 +13,115 @@
     <title>*Home*</title>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="#" class="navbar-brand info-button">
-                    <!--placeholder image for future logo-->
-                    <img src="http://www.hey.fr/fun/emoji/android/en/icon/android/227-emoji_android_slice_of_pizza.png" alt="firebrick-logo">
-                </a>
-                <!--Create better title style the shit out of this!-->
-                <h4 id='site-name'>Pizza-Network</h4>
+    <div class="innerBody">
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand info-button">
+                        <!--placeholder image for future logo-->
+                        <img src="http://www.hey.fr/fun/emoji/android/en/icon/android/227-emoji_android_slice_of_pizza.png" alt="firebrick-logo">
+                    </a>
+                    <!--Create better title style the shit out of this!-->
+                    <h4 id='site-name'>Pizza-Network</h4>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <!--To Do: change to buttons, customize the sytle more-->
+                    <li class="active"><a href="home.html">Home</a></li>
+                    <li><a href="complete.html">Complete Pizzeria List</a> </li>
+                    <li><a href="chats.html">The Slicial Network</a></li>
+                </ul>
             </div>
-            <ul class="nav navbar-nav navbar-right">
-                <!--To Do: change to buttons, customize the sytle more-->
-                <li class="active"><a href="home.html">Home</a></li>
-                <li><a href="complete.html">Complete Pizzeria List</a> </li>
-                <li><a href="chats.html">The Slicial Network</a></li>
-            </ul>
-        </div>
-    </nav>
+        </nav>
 
-    <section id="hiddenStuff" style="display: none">
-        <div class="container info">
-            <div class="row">
-                <p class="col-sm-6 col-sm-offset-3">Pizza network is a site for people who love pizza! Members can add new pizza places, vote for their favorite spot, find your style of pizza, and talk with other humans about pizza. Enjoy you're Pizzazzzing!!!</p>
+        <section id="hiddenStuff" style="display: none">
+            <div class="container info">
+                <div class="row">
+                    <p class="col-sm-6 col-sm-offset-3">Pizza network is a site for people who love pizza! Members can add new pizza places, vote for their favorite spot, find your style of pizza, and talk with other humans about pizza. Enjoy you're Pizzazzzing!!!</p>
+                </div>
+                <div class="center">
+                    <button class="btn btn-primary clearHidden">Exit</button>
+                </div>
             </div>
-            <div class="center">
-                <button class="btn btn-primary clearHidden">Exit</button>
-            </div>
-        </div>
-    </section>
-    <div id="stuffToHide">
-        <!--template to build pizza places-->
-        <div id="pizzeriahomeTemplate" style="display: none">
-            <div class="col-md-12">
-                <div class="pizzeriahome row well">
-                    <!-- pizzeria name get hypertext to their profile -->
-                    <span class="col-md-8"><h3 class="pizzaName"></h3></span>
-                    <span class="col-md-2"><button class="btn btn-info upper">Up Slice<p class="upVotes"></p></button></span>
-                    <span class="col-md-2"><button class="btn btn-info downer">Down Slice<p class="downVotes"></p></button></span>
-                    <div class="address row" style="display: inline"></div>
-                    <div class="row">
-                        <span class="col-md-2"><p class="pizzaTel"></p></span>
-                        <span class="col-md-3"><a href="" class="pizzaURL" target="_blank"></a></span></div>
-                    <!-- alter output to soimething boolean friendly -->
-                    <div class="row" style="display: inline">
-                        <span class="col-md-2">New York: <p class="pizzaNY"></p></span>
-                        <span class="col-md-2">Deep Dish: <p class="pizzaDD"></p></span>
-                        <span class="col-md-2">Brick Oven: <p class="pizzaBO"></p></span>
-                        <span class="col-md-2">Authentic: <p class="pizzaAU"></p></span>
-                        <span class="col-md-2">Delivers: <p class="pizzaDel"></p></span>
-                        <span class="col-md-2">Kid Friendly: <p class="pizzaKids"></p></span>
+        </section>
+        <div id="stuffToHide">
+            <!--template to build pizza places-->
+            <div id="pizzeriahomeTemplate" style="display: none">
+                <div class="col-md-12">
+                    <div class="pizzeriahome row well">
+                        <!-- pizzeria name get hypertext to their profile -->
+                        <span class="col-md-8"><h3 class="pizzaName"></h3></span>
+                        <span class="col-md-2"><button class="btn btn-info upper">Up Slice<p class="upVotes"></p></button></span>
+                        <span class="col-md-2"><button class="btn btn-info downer">Down Slice<p class="downVotes"></p></button></span>
+                        <div class="address row" style="display: inline"></div>
+                        <div class="row">
+                            <span class="col-md-2"><p class="pizzaTel"></p></span>
+                            <span class="col-md-3"><a href="" class="pizzaURL" target="_blank"></a></span></div>
+                        <!-- alter output to soimething boolean friendly -->
+                        <div class="row" style="display: inline">
+                            <span class="col-md-2">New York: <p class="pizzaNY"></p></span>
+                            <span class="col-md-2">Deep Dish: <p class="pizzaDD"></p></span>
+                            <span class="col-md-2">Brick Oven: <p class="pizzaBO"></p></span>
+                            <span class="col-md-2">Authentic: <p class="pizzaAU"></p></span>
+                            <span class="col-md-2">Delivers: <p class="pizzaDel"></p></span>
+                            <span class="col-md-2">Kid Friendly: <p class="pizzaKids"></p></span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!--output for the topten-->
-        <div class="container">
-            <h2 class="list_title">Top Ten Pizzerias</h2>
-            <div id="outputhome"></div>
-        </div>
-
-        <div class="container well">
-            <div class="row pizzaCreate">
-                <p class="col-md-4 col-md-offset-3">Do you have a pizzeria that you'd like to add to the list?</p>
-                <button class="btn btn-primary col-md-2 newPizzaCreate">Click To Add</button>
+            
+            <!--output for the topten-->
+            <div class="container">
+                <h2 class="list_title">Top Ten Pizzerias</h2>
+                <div id="outputhome"></div>
             </div>
-    		<div class="row newPizzaPlace" style="display: none">
-    			<div class="col-sm-4 col-sm-offset-4">
-                    <h3>Fill in the form below to add a new pizzeria.</h3>
-    				Name: <input type="text" id="newPizzaName" class="form-control">
-    				Telephone: <input type="text" id="newPizzaTel" class="form-control">
-    				URL: <input type="text" id="newPizzaSite" class="form-control">
-                    Address: <input type="text" id="newPizzaAdd" class="form-control">
-                    City: <input type="text" id="newPizzaCity" class="form-control">
-                    State: <input type="text" id="newPizzaState" class="form-control">
-                    <!-- fix the radio buttons so that they unselect -->
-    				<h4>Pizza Styles:</h4>
-                    <div class="pizzaStyles">
-                        New York:
-                        <input type="radio" name="newYork" value="yes"> Yes
-                        <input type="radio" name="newYork" value="no"> No<br>
-                        Deep Dish:
-                        <input type="radio" name="deepDish" value="yes"> Yes
-                        <input type="radio" name="deepDish" value="no"> No<br>
-                        Brick Oven:
-                        <input type="radio" name="brickOven" value="yes"> Yes
-                        <input type="radio" name="brickOven" value="no"> No<br>
-                        Authentic:
-                        <input type="radio" name="authentic" value="yes"> Yes
-                        <input type="radio" name="authentic" value="no"> No<br>
-                    </div>
-                    <div class="additionalOptions">
-                        <h4>Delivery?:</h4>
-                        <input type="radio" name="delivery" value="yes"> Yes
-                        <input type="radio" name="delivery" value="no"> No<br>
-                        <h4>Kid Friendly?:</h4>
-                        <input type="radio" name="kids" value="yes"> Yes
-                        <input type="radio" name="kids" value="no"> No<br>
-                    </div><br>
-                    <button class="btn btn-info" id="newPizzaSubmit">Submit Pizzeria</button>
-    			</div>
-    		</div>
-    	</div>
+
+            <div class="container well">
+                <div class="row pizzaCreate">
+                    <p class="col-md-4 col-md-offset-3">Do you have a pizzeria that you'd like to add to the list?</p>
+                    <button class="btn btn-primary col-md-2 newPizzaCreate">Click To Add</button>
+                </div>
+        		<div class="row newPizzaPlace" style="display: none">
+        			<div class="col-sm-4 col-sm-offset-4">
+                        <h3>Fill in the form below to add a new pizzeria.</h3>
+        				Name: <input type="text" id="newPizzaName" class="form-control">
+        				Telephone: <input type="text" id="newPizzaTel" class="form-control">
+        				URL: <input type="text" id="newPizzaSite" class="form-control">
+                        Address: <input type="text" id="newPizzaAdd" class="form-control">
+                        City: <input type="text" id="newPizzaCity" class="form-control">
+                        State: <input type="text" id="newPizzaState" class="form-control">
+                        <!-- fix the radio buttons so that they unselect -->
+        				<h4>Pizza Styles:</h4>
+                        <div class="pizzaStyles">
+                            New York:
+                            <input type="radio" name="newYork" value="yes"> Yes
+                            <input type="radio" name="newYork" value="no"> No<br>
+                            Deep Dish:
+                            <input type="radio" name="deepDish" value="yes"> Yes
+                            <input type="radio" name="deepDish" value="no"> No<br>
+                            Brick Oven:
+                            <input type="radio" name="brickOven" value="yes"> Yes
+                            <input type="radio" name="brickOven" value="no"> No<br>
+                            Authentic:
+                            <input type="radio" name="authentic" value="yes"> Yes
+                            <input type="radio" name="authentic" value="no"> No<br>
+                        </div>
+                        <div class="additionalOptions">
+                            <h4>Delivery?:</h4>
+                            <input type="radio" name="delivery" value="yes"> Yes
+                            <input type="radio" name="delivery" value="no"> No<br>
+                            <h4>Kid Friendly?:</h4>
+                            <input type="radio" name="kids" value="yes"> Yes
+                            <input type="radio" name="kids" value="no"> No<br>
+                        </div><br>
+                        <button class="btn btn-info" id="newPizzaSubmit">Submit Pizzeria</button>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+        <footer class="center">
+            <p>The Pizza Network &copy; 2017 Casey, Chuck, David</p>
+        </footer>
     </div>
-    <footer class="center">
-        <p>The Pizza Network &copy; 2017 Casey, Chuck, David</p>
-    </footer>
     <script>
         // check for authentication and call popular sort
         $(document).ready(function() {

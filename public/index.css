@@ -12,8 +12,12 @@
 	margin-top: 60px
 }
 
-body{
+.innerBody {
 	background-color: firebrick;
+}
+
+body {
+	background-color: #222;
 }
 
 #site-name {

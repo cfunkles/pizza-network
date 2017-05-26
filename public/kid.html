@@ -13,57 +13,59 @@
 	<title>* #kidfriendly *</title>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="#" class="navbar-brand info-button">
-                    <!--placeholder image for future logo-->
-                    <img src="http://www.hey.fr/fun/emoji/android/en/icon/android/227-emoji_android_slice_of_pizza.png" alt="firebrick-logo">
-                </a>
-                <!--Create better title style the shit out of this!-->
-                <h4 id='site-name'>Pizza-Network</h4>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <!--To Do: change to buttons, customize the sytle more-->
-                <li><a href="home.html">Home</a></li>
-                <li><a href="complete.html">Complete Pizzeria List</a> </li>
-                <li class="active"><a href="chats.html">The Slicial Network</a></li>
-            </ul>
-        </div>
-    </nav>
-	<section id="hiddenStuff" style="display: none">
-        <div class="container info">
-            <div class="row">
-                <p class="col-sm-6 col-sm-offset-3">Pizza network is a site for people who love pizza! Members can add new pizza places, vote for their favorite spot, find your style of pizza, and talk with other humans about pizza. Enjoy you're Pizzazzzing!!!</p>
-            </div>
-            <div class="center">
-                <button class="btn btn-primary clearHidden">Exit</button>
-            </div>
-        </div>
-    </section>
-    <div id="stuffToHide">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 col-md-offset-4">
-					<h1>Welcome to the #kidfriendly Chat Room!</h1>
-					<p>Join the conversation by adding a message in the text box below</p><br>
-					<input type="text" class="form-control" id="newChat"><br>
-					<button class="btn btn-default" id="sendChat">Send Chat</button>
+	<div class="innerBody">
+	    <nav class="navbar navbar-inverse navbar-fixed-top">
+	        <div class="container-fluid">
+	            <div class="navbar-header">
+	                <a href="#" class="navbar-brand info-button">
+	                    <!--placeholder image for future logo-->
+	                    <img src="http://www.hey.fr/fun/emoji/android/en/icon/android/227-emoji_android_slice_of_pizza.png" alt="firebrick-logo">
+	                </a>
+	                <!--Create better title style the shit out of this!-->
+	                <h4 id='site-name'>Pizza-Network</h4>
+	            </div>
+	            <ul class="nav navbar-nav navbar-right">
+	                <!--To Do: change to buttons, customize the sytle more-->
+	                <li><a href="home.html">Home</a></li>
+	                <li><a href="complete.html">Complete Pizzeria List</a> </li>
+	                <li class="active"><a href="chats.html">The Slicial Network</a></li>
+	            </ul>
+	        </div>
+	    </nav>
+		<section id="hiddenStuff" style="display: none">
+	        <div class="container info">
+	            <div class="row">
+	                <p class="col-sm-6 col-sm-offset-3">Pizza network is a site for people who love pizza! Members can add new pizza places, vote for their favorite spot, find your style of pizza, and talk with other humans about pizza. Enjoy you're Pizzazzzing!!!</p>
+	            </div>
+	            <div class="center">
+	                <button class="btn btn-primary clearHidden">Exit</button>
+	            </div>
+	        </div>
+	    </section>
+	    <div id="stuffToHide">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-md-offset-4">
+						<h1>Welcome to the #kidfriendly Chat Room!</h1>
+						<p>Join the conversation by adding a message in the text box below</p><br>
+						<input type="text" class="form-control" id="newChat"><br>
+						<button class="btn btn-default" id="sendChat">Send Chat</button>
+					</div>
 				</div>
-			</div>
-		</div><br>
+			</div><br>
 
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 well" id="chatsOutput">
-					
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 well" id="chatsOutput">
+						
+					</div>
 				</div>
 			</div>
 		</div>
+		<footer class="center">
+	    	<p>The Pizza Network &copy; Casey, Chuck, David</p>
+		</footer>
 	</div>
-	<footer class="center">
-    	<p>The Pizza Network &copy; Casey, Chuck, David</p>
-	</footer>
 	<script>
 
 		// check for authentication
