@@ -65,7 +65,14 @@
     	<p>The Pizza Network &copy; Casey, Chuck, David</p>
 	</footer>
 	<script>
-
+	// check for authentication
+		$(document).ready(function() {
+			$.get('/api/authentication', function(data){
+				if(data === "error"){
+					window.location.href = "index.html";
+				}
+			});
+		});
 
 		function getChats(){
 			$.get('/api/getChats', function(res){

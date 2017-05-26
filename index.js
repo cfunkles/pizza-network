@@ -34,13 +34,12 @@ app.use(expressSession({
 
 
 // authentication
-// app.get('/api/authenication', function(req, res){
-// 	console.log(req.session._id);
-// 	if(!req.session._id){
-// 		res.send("error");
-// 	}
-
-// });
+app.get('/api/authentication', function(req, res){
+	console.log("Req.session: " + req.session.user);
+	if(!req.session.user){
+		res.send("error");
+	}
+});
 
 // Register a new user
 app.post('/api/register', function(req, res){
@@ -48,7 +47,6 @@ app.post('/api/register', function(req, res){
 	db.collection('users').findOne({
 		username: req.body.username
 	}, function(err, data){
-		console.log(data);
 		if(err){
 			console.log(err);
 			return;
@@ -137,7 +135,6 @@ app.post('/api/upvote', function(req, res) {
 		if (err) {
 			console.log(err);
 		}
-		console.log('result? ', result);
 		res.send(result);
 	});
 });
@@ -147,7 +144,6 @@ app.post('/api/downvote', function(req, res) {
 		if (err) {
 			console.log(err);
 		}
-		console.log('result? ', result);
 		res.send(result);
 	});	
 });
@@ -161,7 +157,6 @@ app.get('/api/getPizzerias', function(req, res) {
 			res.send('error');
 			return;
 		}
-		console.log(docs);
 		res.send(docs);
 	});
 });
