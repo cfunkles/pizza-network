@@ -19,10 +19,9 @@ body {
 	background-color: #222;
 }
 
-body{
+.innerBody {
 	background-color: firebrick;
 }
-
 
 .info img {
 	width: 5em;
@@ -31,13 +30,6 @@ body{
 
 #list_title {
 	margin-top: 60px
-}
-
-#site-name {
-	color: white;
-	font-family: "Lucida Grande";
-	word-spacing: 0.2em;
-	letter-spacing: .12em;
 }
 
 p img {
